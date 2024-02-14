@@ -9,11 +9,9 @@
   "author": "Razetime",
   "license": "ISC",
   "dependencies": {
-    "man": "^2.0.0",
-    "nan": "^2.16.0",
-    "node": "^18.4.0"
+    "nan": "^2.18.0"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.6"
+    "tree-sitter-cli": "^0.20.8"
   }
 }

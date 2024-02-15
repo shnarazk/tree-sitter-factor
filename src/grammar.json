@@ -1322,12 +1322,18 @@
           "value": "\"(?:\\\\\\\\|\\\\\"|[^\"])*\""
         },
         {
-          "type": "PATTERN",
-          "value": "(\\S+\")(\\s+)((?:\\\\\\\\|\\\\\"|[^\"])*\")"
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "\\\\S+\"\\s+(?:\\\\\\\\|\\\\\"|[^\"])*\""
+          }
         },
         {
-          "type": "PATTERN",
-          "value": "(CHAR:)(\\s+)(\\\\[\\\\abfnrstv]|[^\\\\]\\S*)(\\s)"
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "CHAR:\\s+(\\\\[\\\\abfnrstv]|[^\\\\]\\S*)\\s"
+          }
         }
       ]
     },

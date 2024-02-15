@@ -88,8 +88,8 @@ module.exports = grammar({
     string: $ => choice(
         /"""\s(?:.|\n)*?\s"""/,
         /"(?:\\\\|\\"|[^"])*"/,
-        /(\S+")(\s+)((?:\\\\|\\"|[^"])*")/,
-        /(CHAR:)(\s+)(\\[\\abfnrstv]|[^\\]\S*)(\s)/
+        token(/\\S+"\s+(?:\\\\|\\"|[^"])*"/),
+        token(/CHAR:\s+(\\[\\abfnrstv]|[^\\]\S*)\s/)
     ),
 
     bool: $ => /[tf]/,

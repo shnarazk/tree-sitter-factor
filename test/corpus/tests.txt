@@ -60,3 +60,17 @@ String Literals
   (string)
   (string)
 )
+
+=================
+numbers
+=================
+
+1 20 30.4
+
+---
+
+(source_file
+  (number)
+  (number)
+  (number)
+)

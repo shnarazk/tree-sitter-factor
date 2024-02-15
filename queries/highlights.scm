@@ -9,6 +9,4 @@
 
 (stack_effect 
   params:(effect 
-    (sname) @variable.parameter))
-  
-
+    (sname) @variable.parameter)) @type

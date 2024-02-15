@@ -24,5 +24,39 @@ Definition
       (word))))
 
 =================
+Empty String Literal
+=================
+
+""
+
+---
+
+(source_file
+  (string)
+)
+
+=================
+String Literal
+=================
+
+"a"
+
+---
+
+(source_file
+  (string)
+)
+
+=================
 String Literals
 =================
+
+"a" "a" "a"
+
+---
+
+(source_file
+  (string)
+  (string)
+  (string)
+)

@@ -1,5 +1,5 @@
 module.exports = grammar({
-  name: 'Factor',
+  name: 'factor',
 
   extras: $ => [$.comment],
 
@@ -36,7 +36,7 @@ module.exports = grammar({
 
     effect: $ => repeat1(seq($.sname,optional(seq(':',$.ws,$.stack_effect)),$.ws)),
 
-    import_defn: $ => choice( 
+    import_defn: $ => choice(
         seq('USING:',$.ws,$.namel,$.ws,';'),
         seq(/USE:|UNUSE:|IN:|QUALIFIED:/,$.ws,$.sname),
         seq('QUALIFIED-WITH:',$.ws,$.sname,$.ws,$.sname),
@@ -130,4 +130,3 @@ module.exports = grammar({
     )
   }
 });
-

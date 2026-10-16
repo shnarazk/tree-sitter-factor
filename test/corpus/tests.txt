@@ -130,6 +130,26 @@ Definition 5
     (expr (sname))
     (block_end)))
 
-=================
-String Literals
-=================
+=============
+Definition 6
+=============
+
+:: add3 ( a b c -- x y ) [ a + ] ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect
+        (sname)
+        (sname)
+        (sname))
+      (effect
+        (sname)
+        (sname)))
+    (expr
+      (block_b
+        (expr (sname))
+        (expr (sname))))
+    (block_end)))

@@ -1,5 +1,55 @@
 [
   {
+    "type": "block_b",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block_c",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "block_p",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true,
@@ -18,7 +68,15 @@
           "named": true
         },
         {
+          "type": "keyword",
+          "named": true
+        },
+        {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -52,9 +110,55 @@
       "required": true,
       "types": [
         {
+          "type": "block_b",
+          "named": true
+        },
+        {
+          "type": "block_c",
+          "named": true
+        },
+        {
+          "type": "block_p",
+          "named": true
+        },
+        {
           "type": "data",
           "named": true
         },
+        {
+          "type": "sname",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_defn",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "namel",
+          "named": true
+        },
+        {
+          "type": "sname",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "namel",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
         {
           "type": "sname",
           "named": true
@@ -68,6 +172,29 @@
     "fields": {}
   },
   {
+    "type": "other_syntax_defn",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "namel",
+          "named": true
+        },
+        {
+          "type": "sname",
+          "named": true
+        },
+        {
+          "type": "words",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -77,7 +204,23 @@
       "required": false,
       "types": [
         {
+          "type": "import_defn",
+          "named": true
+        },
+        {
+          "type": "other_syntax_defn",
+          "named": true
+        },
+        {
           "type": "shebang",
+          "named": true
+        },
+        {
+          "type": "tuple_or_class_defn",
+          "named": true
+        },
+        {
+          "type": "vocab_private",
           "named": true
         },
         {
@@ -97,6 +240,30 @@
       "types": [
         {
           "type": "effect",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "tuple_or_class_defn",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "namel",
+          "named": true
+        },
+        {
+          "type": "sname",
           "named": true
         }
       ]
@@ -130,6 +297,21 @@
     }
   },
   {
+    "type": "words",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "word",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -146,11 +328,119 @@
     "named": false
   },
   {
-    "type": "block_end",
-    "named": true
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": "ALIEN:",
+    "named": false
+  },
+  {
+    "type": "C:",
+    "named": false
+  },
+  {
+    "type": "CONSTANT:",
+    "named": false
+  },
+  {
+    "type": "FUNCTION-ALIAS:",
+    "named": false
+  },
+  {
+    "type": "FUNCTION:",
+    "named": false
+  },
+  {
+    "type": "GENERIC#:",
+    "named": false
+  },
+  {
+    "type": "GENERIC:",
+    "named": false
+  },
+  {
+    "type": "HELP:",
+    "named": false
+  },
+  {
+    "type": "HOOK:",
+    "named": false
+  },
+  {
+    "type": "INSTANCE:",
+    "named": false
+  },
+  {
+    "type": "MAIN:",
+    "named": false
+  },
+  {
+    "type": "PREDICATE:",
+    "named": false
+  },
+  {
+    "type": "QUALIFIED-WITH:",
+    "named": false
+  },
+  {
+    "type": "RENAME:",
+    "named": false
+  },
+  {
+    "type": "SINGLETON:",
+    "named": false
+  },
+  {
+    "type": "SINGLETONS:",
+    "named": false
+  },
+  {
+    "type": "SLOT:",
+    "named": false
+  },
+  {
+    "type": "STRUCT:",
+    "named": false
+  },
+  {
+    "type": "SYMBOL:",
+    "named": false
+  },
+  {
+    "type": "SYMBOLS:",
+    "named": false
+  },
+  {
+    "type": "SYNTAX:",
+    "named": false
+  },
+  {
+    "type": "USING:",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
   },
   {
     "type": "bool",
+    "named": true
+  },
+  {
+    "type": "keyword",
     "named": true
   },
   {
@@ -160,5 +450,21 @@
   {
     "type": "sname",
     "named": true
+  },
+  {
+    "type": "vocab_private",
+    "named": true
+  },
+  {
+    "type": "word",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
   }
 ]

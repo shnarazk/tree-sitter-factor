@@ -16,23 +16,23 @@ module.exports = grammar({
 
     _definition: $ => choice(
         $.word_defn,
-        // $.import_defn,
-        // $.tuple_or_class_defn,
-        // $.other_syntax_defn,
-        // $.vocab_private,
+        $.import_defn,
+        $.tuple_or_class_defn,
+        $.other_syntax_defn,
+        $.vocab_private,
         // $.expr
     ),
 
     word_defn: $ => prec(1,choice(
         seq(/::?/,$.sname,$.stack_effect,optional($._exprs),$.block_end),
-        // seq(/MACRO::?/,$.sname,$.stack_effect,optional($.expr),';'),
-        // seq(/MEMO::?/,$.sname,$.stack_effect,optional($.expr),';'),
-        // seq(/TYPED::?/,$.sname,$.stack_effect,optional($.expr),';'),
-        // seq(/M::?/,$.sname,$.sname,optional($.expr),';'),
-        // seq('GENERIC:',$.sname,$.stack_effect),
-        // seq('GENERIC#:',$.sname,/\d+/,$.stack_effect),
-        // seq('GENERIC#:',$.sname,/\d+/,$.stack_effect),
-        // seq('HOOK:',$.sname,$.sname,$.stack_effect)
+        seq(/MACRO::?/,$.sname,$.stack_effect,optional($._exprs),';'),
+        seq(/MEMO::?/,$.sname,$.stack_effect,optional($._exprs),';'),
+        seq(/TYPED::?/,$.sname,$.stack_effect,optional($._exprs),';'),
+        seq(/M::?/,$.sname,$.sname,optional($._exprs),';'),
+        seq('GENERIC:',$.sname,$.stack_effect),
+        seq('GENERIC#:',$.sname,/\d+/,$.stack_effect),
+        seq('GENERIC#:',$.sname,/\d+/,$.stack_effect),
+        seq('HOOK:',$.sname,$.sname,$.stack_effect)
     )),
 
     stack_effect: $ => seq('(',optional($.effect),'--',optional($.effect),')'),
@@ -78,14 +78,24 @@ module.exports = grammar({
 
     _exprs: $ => repeat1($.expr),
 
-    expr: $ => choice($.sname,$.data),
+    expr: $ => choice(
+      $.sname,
+      $.data,
+      $.block_b,
+      $.block_c,
+      $.block_p,
+    ),
+
+    block_b: $ => seq("[", $._exprs, "]"),
+    block_c: $ => seq("{", $._exprs, "}"),
+    block_p: $ => seq("(", $._exprs, ")"),
 
     data: $ => choice(
-        // $.string,
+        $.string,
         $.bool,
         // $.symbol,
         $.number,
-        // $.keyword
+        $.keyword
     ),
 
     string: $ => choice(

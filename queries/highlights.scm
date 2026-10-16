@@ -3,12 +3,10 @@
 (string) @string
 (bool) @bool
 (comment) @comment
-(word_defn 
-  local_word_start: "::"
-  word_name:(sname) @function.method)
+(word_defn
+   .
+  (sname) @function.method)
 
-(stack_effect 
-  params:(effect 
+(stack_effect
+  (effect
     (sname) @variable.parameter))
-  
-

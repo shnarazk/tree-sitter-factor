@@ -153,3 +153,25 @@ Definition 6
         (expr (sname))
         (expr (sname))))
     (block_end)))
+
+=============
+Definition 7
+=============
+
+:: add3 ( a b c -- x y ) "str" "" ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect
+        (sname)
+        (sname)
+        (sname))
+      (effect
+        (sname)
+        (sname)))
+    (expr (data (string)))
+    (expr (data (string)))
+    (block_end)))

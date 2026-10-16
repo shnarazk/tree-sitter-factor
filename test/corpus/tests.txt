@@ -1,8 +1,41 @@
 =============
-Definition
+Definition1
 =============
 
-:: add2 ( a b c -- x y ) a b + c ;
+:: one ( -- one ) 1 ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect (sname)))
+    (expr
+      (data (number)))
+    (block_end)))
+
+=============
+Definition 2
+=============
+
+:: add2 ( a -- x ) add ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect (sname))
+      (effect (sname)))
+    (expr
+      (sname))
+    (block_end)))
+
+=============
+Definition 3
+=============
+
+:: add3 ( a b c -- x y ) + ;
 ---
 
 (source_file
@@ -16,12 +49,86 @@ Definition
       (effect
         (sname)
         (sname)))
-    (expr
-      (word)
-      (word)
-      (word
-        (builtin_math))
-      (word))))
+    (expr (sname))
+    (block_end)))
+
+=============
+Definition 3a
+=============
+
+:: add3 ( a b c -- x y ) + ;
+:: add4 ( a b c -- x y ) + ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect
+        (sname)
+        (sname)
+        (sname))
+      (effect
+        (sname)
+        (sname)))
+    (expr (sname))
+    (block_end))
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect
+        (sname)
+        (sname)
+        (sname))
+      (effect
+        (sname)
+        (sname)))
+    (expr (sname))
+    (block_end)) )
+
+=============
+Definition 4
+=============
+
+:: add4 ( a b c -- x y ) 1 2 ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect
+        (sname)
+        (sname)
+        (sname))
+      (effect
+        (sname)
+        (sname)))
+    (expr (data (number)))
+    (expr (data (number)))
+    (block_end)))
+
+=============
+Definition 5
+=============
+
+:: add3 ( a b c -- x y ) a + ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect
+        (sname)
+        (sname)
+        (sname))
+      (effect
+        (sname)
+        (sname)))
+    (expr (sname))
+    (expr (sname))
+    (block_end)))
 
 =================
 String Literals

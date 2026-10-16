@@ -1,92 +1,97 @@
 module.exports = grammar({
   name: 'factor',
 
-  extras: $ => [$.comment],
+  extras: $ => [/\s/, $.comment],
 
   rules: {
     source_file: $ => seq(
-        optional($._shebang),
-        repeat(seq($._definition,$.ews))
+        optional($.shebang),
+        optional(
+          seq(
+            $._definition,
+            repeat($._definition)))
     ),
 
-    _shebang: $ => /#!.*\n/,
+    shebang: $ => /#!.*\n/,
 
     _definition: $ => choice(
         $.word_defn,
-        $.import_defn,
-        $.tuple_or_class_defn,
-        $.other_syntax_defn,
-        $.vocab_private,
-        $.expr
+        // $.import_defn,
+        // $.tuple_or_class_defn,
+        // $.other_syntax_defn,
+        // $.vocab_private,
+        // $.expr
     ),
 
     word_defn: $ => prec(1,choice(
-        seq(/::?/,$.ws,$.sname,$.ws,$.stack_effect,$.ws,optional($.expr),$.ws,';'),
-        seq(/MACRO::?/,$.ws,$.sname,$.ws,$.stack_effect,$.ws,optional($.expr),$.ws,';'),
-        seq(/MEMO::?/,$.ws,$.sname,$.ws,$.stack_effect,$.ws,optional($.expr),$.ws,';'),
-        seq(/TYPED::?/,$.ws,$.sname,$.ws,$.stack_effect,$.ws,optional($.expr),$.ws,';'),
-        seq(/M::?/,$.ws,$.sname,$.ws,$.sname,$.ws,optional($.expr),$.ws,';'),
-        seq('GENERIC:',$.ws,$.sname,$.ws,$.stack_effect),
-        seq('GENERIC#:',$.ws,$.sname,$.ws,/\d+/,$.ws,$.stack_effect),
-        seq('GENERIC#:',$.ws,$.sname,$.ws,/\d+/,$.ws,$.stack_effect),
-        seq('HOOK:',$.ws,$.sname,$.ws,$.sname,$.ws,$.stack_effect)
+        seq(/::?/,$.sname,$.stack_effect,optional($._exprs),$.block_end),
+        // seq(/MACRO::?/,$.sname,$.stack_effect,optional($.expr),';'),
+        // seq(/MEMO::?/,$.sname,$.stack_effect,optional($.expr),';'),
+        // seq(/TYPED::?/,$.sname,$.stack_effect,optional($.expr),';'),
+        // seq(/M::?/,$.sname,$.sname,optional($.expr),';'),
+        // seq('GENERIC:',$.sname,$.stack_effect),
+        // seq('GENERIC#:',$.sname,/\d+/,$.stack_effect),
+        // seq('GENERIC#:',$.sname,/\d+/,$.stack_effect),
+        // seq('HOOK:',$.sname,$.sname,$.stack_effect)
     )),
 
-    stack_effect: $ => seq('(',$.ws,optional($.effect),'--',$.ws,optional($.effect),')'),
+    stack_effect: $ => seq('(',optional($.effect),'--',optional($.effect),')'),
 
-    effect: $ => repeat1(seq($.sname,optional(seq(':',$.ws,$.stack_effect)),$.ws)),
+    effect: $ => repeat1(seq($.sname,optional(seq(':',$.stack_effect)))),
 
     import_defn: $ => choice(
-        seq('USING:',$.ws,$.namel,$.ws,';'),
-        seq(/USE:|UNUSE:|IN:|QUALIFIED:/,$.ws,$.sname),
-        seq('QUALIFIED-WITH:',$.ws,$.sname,$.ws,$.sname),
-        seq(/FROM:|EXCLUDE:/,$.ws,$.sname,$.ws,'=>',$.ws,$.namel,';'),
-        seq('RENAME:',$.ws,$.sname,$.ws,$.sname,$.ws,'=>',$.ws,$.sname),
-        seq(/ALIAS:|TYPEDEF:/,$.ws,$.sname,$.ws,$.sname),
-        seq(/DEFER:|FORGET:|POSTPONE:/,$.ws,$.sname)
+        seq('USING:',$.namel,';'),
+        seq(/USE:|UNUSE:|IN:|QUALIFIED:/,$.sname),
+        seq('QUALIFIED-WITH:',$.sname,$.sname),
+        seq(/FROM:|EXCLUDE:/,$.sname,'=>',$.namel,';'),
+        seq('RENAME:',$.sname,$.sname,'=>',$.sname),
+        seq(/ALIAS:|TYPEDEF:/,$.sname,$.sname),
+        seq(/DEFER:|FORGET:|POSTPONE:/,$.sname)
     ),
 
     tuple_or_class_defn: $ => choice(
-        seq(/TUPLE:|ERROR:/,$.ws,$.sname,$.ws,'<',$.ws,$.sname,$.ws,';'),
-        seq(/TUPLE:|ERROR:|BUILTIN:/,$.ws,$.namel,';'),
-        seq(/MIXIN:|UNION:|INTERSECTION:/,$.ws,$.sname),
-        seq('PREDICATE:',$.ws,$.sname,$.ws,'<',$.ws,$.sname),
-        seq('C:',$.ws,$.sname,$.ws,$.sname),
-        seq('INSTANCE:',$.ws,$.sname,$.ws,$.sname),
-        seq('SLOT:',$.ws,$.sname),
-        seq('SINGLETON:',$.ws,$.sname),
-        seq('SINGLETONS:',$.ws,$.namel,$.ws,';')
+        seq(/TUPLE:|ERROR:/,$.sname,'<',$.sname,';'),
+        seq(/TUPLE:|ERROR:|BUILTIN:/,$.namel,';'),
+        seq(/MIXIN:|UNION:|INTERSECTION:/,$.sname),
+        seq('PREDICATE:',$.sname,'<',$.sname),
+        seq('C:',$.sname,$.sname),
+        seq('INSTANCE:',$.sname,$.sname),
+        seq('SLOT:',$.sname),
+        seq('SINGLETON:',$.sname),
+        seq('SINGLETONS:',$.namel,';')
     ),
 
     other_syntax_defn: $ => choice(
-        seq('CONSTANT:',$.ws,$.sname,$.ws,$.sname),
-        seq('SYMBOL:',$.ws,$.sname),
-        seq('MAIN:',$.ws,$.sname,$.ws,$.sname),
-        seq('HELP:',$.ws,$.sname,$.ws,$.words,';'),
-        seq('SYMBOLS:',$.ws,$.sname,$.ws,$.namel,';'),
-        seq('SYNTAX:',$.ws,$.sname,$.ws,$.words,';'),
-        seq('ALIEN:',$.ws,$.sname),
-        seq('STRUCT:',$.ws,$.sname,$.ws,$.words,';'),
-        seq('FUNCTION:',$.ws,$.sname,$.ws,$.sname,$.ws,'(',$.ws,$.words,')'),
-        seq('FUNCTION-ALIAS:',$.ws,$.sname,$.ws,$.sname,$.ws,$.sname,$.ws,'(',$.ws,$.words,')'),
+        seq('CONSTANT:',$.sname,$.sname),
+        seq('SYMBOL:',$.sname),
+        seq('MAIN:',$.sname,$.sname),
+        seq('HELP:',$.sname,$.words,';'),
+        seq('SYMBOLS:',$.sname,$.namel,';'),
+        seq('SYNTAX:',$.sname,$.words,';'),
+        seq('ALIEN:',$.sname),
+        seq('STRUCT:',$.sname,$.words,';'),
+        seq('FUNCTION:',$.sname,$.sname,'(',$.words,')'),
+        seq('FUNCTION-ALIAS:',$.sname,$.sname,$.sname,'(',$.words,')'),
     ),
 
     vocab_private: $ => /<PRIVATE|PRIVATE>/,
 
-    expr: $ => prec.left(seq(repeat(seq($.data,$.ws)),$.data)),
+    _exprs: $ => repeat1($.expr),
+
+    expr: $ => choice($.sname,$.data),
 
     data: $ => choice(
-        $.string,
+        // $.string,
         $.bool,
-        $.symbol,
+        // $.symbol,
         $.number,
-        $.keyword
-        // $.builtin
+        // $.keyword
     ),
 
     string: $ => choice(
-        /"""\s(?:.|\n)*?\s"""/,
-        /"(?:\\\\|\\"|[^"])*"/,
+        // /"""\s(?:.|\n)*?\s"""/,
+        // /"(?:\\\\|\\"|[^"])*"/,
+        /"(\\\\|\\"|[^"])*"/,
         /(\S+")(\s+)((?:\\\\|\\"|[^"])*")/,
         /(CHAR:)(\s+)(\\[\\abfnrstv]|[^\\]\S*)(\s)/
     ),
@@ -109,19 +114,17 @@ module.exports = grammar({
         /(?:\-\d([\d,]*\d)?)?\-\d(?:[\d,]*\d)?\/\d(?:[\d,]*\d)?/,
     ),
 
+    block_end: $ => ';',
+
     keyword: $ => /(?:deprecated|final|foldable|flushable|inline|recursive)\s/,
 
-    sname: $ => /[^"\s](\S)*/,
+    sname: $ => /[^";](\S)*/,
 
-    namel: $ => repeat1(seq($.sname,$.ws)),
-
-    ws: $ => /\s+/,
-
-    ews: $ => $.ws, // can't set $ here.
+    namel: $ => repeat1(seq($.sname)),
 
     word: $ => /\S+/,
 
-    words: $ => repeat1(seq($.word,$.ws)),
+    words: $ => repeat1(seq($.word)),
 
     comment: $ => choice(
         /!\s+.*\n/,

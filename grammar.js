@@ -6,10 +6,7 @@ module.exports = grammar({
   rules: {
     source_file: $ => seq(
         optional($.shebang),
-        optional(
-          seq(
-            $._definition,
-            repeat($._definition)))
+        optional(repeat($._definition))
     ),
 
     shebang: $ => /#!.*\n/,
@@ -86,9 +83,9 @@ module.exports = grammar({
       $.block_p,
     ),
 
-    block_b: $ => seq("[", $._exprs, "]"),
-    block_c: $ => seq("{", $._exprs, "}"),
-    block_p: $ => seq("(", $._exprs, ")"),
+    block_b: $ => seq("[", optional($._exprs), "]"),
+    block_c: $ => seq("{", optional($._exprs), "}"),
+    block_p: $ => seq("(", optional($._exprs), ")"),
 
     data: $ => choice(
         $.string,

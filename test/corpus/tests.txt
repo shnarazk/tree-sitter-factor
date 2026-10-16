@@ -1,5 +1,5 @@
 =============
-Definition1
+Definition 1
 =============
 
 :: one ( -- one ) 1 ;
@@ -174,4 +174,34 @@ Definition 7
         (sname)))
     (expr (data (string)))
     (expr (data (string)))
+    (block_end)))
+
+=============
+Definition 8
+=============
+
+: args>config ( -- config )
+  length
+  {
+    { [ 0 = ] [ 1 "" { } ] }
+    ! { [ 1 = ] [ first { } ] }
+    [ swap suffix ]
+  }
+  cond ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect (effect (sname)))
+    (expr (sname))
+    (expr
+      (block_c
+        (expr
+          (block_c
+            (expr (block_b (expr (data (number))) (expr (sname))))
+            (expr (block_b (expr (data (number))) (expr (data (string))) (expr (block_c)))) ))
+        (comment)
+        (expr (block_b (expr (sname)) (expr (sname)))) ))
+    (expr (sname))
     (block_end)))

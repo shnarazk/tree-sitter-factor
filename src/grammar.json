@@ -99,6 +99,18 @@
               {
                 "type": "SYMBOL",
                 "name": "block_end"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "keyword"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               }
             ]
           },
@@ -538,16 +550,27 @@
               "name": "sname"
             },
             {
-              "type": "STRING",
-              "value": "<"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "<"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "sname"
+              }
             },
             {
               "type": "SYMBOL",
-              "name": "sname"
-            },
-            {
-              "type": "STRING",
-              "value": ";"
+              "name": "block_end"
             }
           ]
         },
@@ -563,8 +586,8 @@
               "name": "namel"
             },
             {
-              "type": "STRING",
-              "value": ";"
+              "type": "SYMBOL",
+              "name": "block_end"
             }
           ]
         },
@@ -674,8 +697,8 @@
               "name": "namel"
             },
             {
-              "type": "STRING",
-              "value": ";"
+              "type": "SYMBOL",
+              "name": "block_end"
             }
           ]
         }
@@ -1017,10 +1040,6 @@
         {
           "type": "SYMBOL",
           "name": "number"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "keyword"
         }
       ]
     },
@@ -1097,7 +1116,7 @@
     },
     "keyword": {
       "type": "PATTERN",
-      "value": "(?:deprecated|final|foldable|flushable|inline|recursive)\\s"
+      "value": "(?:deprecated|final|foldable|flushable|inline|recursive)"
     },
     "sname": {
       "type": "PATTERN",

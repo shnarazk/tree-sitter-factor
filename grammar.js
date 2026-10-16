@@ -21,7 +21,7 @@ module.exports = grammar({
     ),
 
     word_defn: $ => prec(1,choice(
-        seq(/::?/,$.sname,$.stack_effect,optional($._exprs),$.block_end),
+        seq(/::?/,$.sname,$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
         seq(/MACRO::?/,$.sname,$.stack_effect,optional($._exprs),';'),
         seq(/MEMO::?/,$.sname,$.stack_effect,optional($._exprs),';'),
         seq(/TYPED::?/,$.sname,$.stack_effect,optional($._exprs),';'),
@@ -47,15 +47,15 @@ module.exports = grammar({
     ),
 
     tuple_or_class_defn: $ => choice(
-        seq(/TUPLE:|ERROR:/,$.sname,'<',$.sname,';'),
-        seq(/TUPLE:|ERROR:|BUILTIN:/,$.namel,';'),
+        seq(/TUPLE:|ERROR:/,$.sname,optional('<'),repeat($.sname),$.block_end),
+        seq(/TUPLE:|ERROR:|BUILTIN:/,$.namel,$.block_end),
         seq(/MIXIN:|UNION:|INTERSECTION:/,$.sname),
         seq('PREDICATE:',$.sname,'<',$.sname),
         seq('C:',$.sname,$.sname),
         seq('INSTANCE:',$.sname,$.sname),
         seq('SLOT:',$.sname),
         seq('SINGLETON:',$.sname),
-        seq('SINGLETONS:',$.namel,';')
+        seq('SINGLETONS:',$.namel,$.block_end)
     ),
 
     other_syntax_defn: $ => choice(
@@ -92,7 +92,7 @@ module.exports = grammar({
         $.bool,
         // $.symbol,
         $.number,
-        $.keyword
+        // $.keyword
     ),
 
     string: $ => choice(
@@ -123,7 +123,7 @@ module.exports = grammar({
 
     block_end: $ => ';',
 
-    keyword: $ => /(?:deprecated|final|foldable|flushable|inline|recursive)\s/,
+    keyword: $ => /(?:deprecated|final|foldable|flushable|inline|recursive)/,
 
     sname: $ => /[^";](\S)*/,
 

@@ -21,15 +21,15 @@ module.exports = grammar({
     ),
 
     word_defn: $ => prec(1,choice(
-        seq(/::?/,$.sname,$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
-        seq(/MACRO::?/,$.sname,$.stack_effect,optional($._exprs),';'),
-        seq(/MEMO::?/,$.sname,$.stack_effect,optional($._exprs),';'),
-        seq(/TYPED::?/,$.sname,$.stack_effect,optional($._exprs),';'),
-        seq(/M::?/,$.sname,$.sname,optional($._exprs),';'),
-        seq('GENERIC:',$.sname,$.stack_effect),
-        seq('GENERIC#:',$.sname,/\d+/,$.stack_effect),
-        seq('GENERIC#:',$.sname,/\d+/,$.stack_effect),
-        seq('HOOK:',$.sname,$.sname,$.stack_effect)
+        seq(/::?/,field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
+        seq(/MACRO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),';'),
+        seq(/MEMO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),';'),
+        seq(/TYPED::?/,field('id',$.sname),$.stack_effect,optional($._exprs),';'),
+        seq(/M::?/,field('id',$.sname),$.sname,optional($._exprs),';'),
+        seq('GENERIC:',field('id',$.sname),$.stack_effect),
+        seq('GENERIC#:',field('id',$.sname),/\d+/,$.stack_effect),
+        seq('GENERIC#:',field('id',$.sname),/\d+/,$.stack_effect),
+        seq('HOOK:',field('id',$.sname),$.sname,$.stack_effect)
     )),
 
     stack_effect: $ => seq('(',optional($.effect),'--',optional($.effect),')'),
@@ -47,28 +47,28 @@ module.exports = grammar({
     ),
 
     tuple_or_class_defn: $ => choice(
-        seq(/TUPLE:|ERROR:/,$.sname,optional('<'),repeat($.sname),$.block_end),
-        seq(/TUPLE:|ERROR:|BUILTIN:/,$.namel,$.block_end),
-        seq(/MIXIN:|UNION:|INTERSECTION:/,$.sname),
-        seq('PREDICATE:',$.sname,'<',$.sname),
-        seq('C:',$.sname,$.sname),
-        seq('INSTANCE:',$.sname,$.sname),
-        seq('SLOT:',$.sname),
-        seq('SINGLETON:',$.sname),
-        seq('SINGLETONS:',$.namel,$.block_end)
+        seq(/TUPLE:|ERROR:/,field('id',$.sname),optional('<'),repeat($.sname),$.block_end),
+        seq(/TUPLE:|ERROR:|BUILTIN:/,field('id',$.namel),$.block_end),
+        seq(/MIXIN:|UNION:|INTERSECTION:/,field('id',$.sname)),
+        seq('PREDICATE:',field('id',$.sname),'<',$.sname),
+        seq('C:',field('id',$.sname),$.sname),
+        seq('INSTANCE:',field('id',$.sname),$.sname),
+        seq('SLOT:',field('id',$.sname)),
+        seq('SINGLETON:',field('id',$.sname)),
+        seq('SINGLETONS:',field('id',$.namel),$.block_end)
     ),
 
     other_syntax_defn: $ => choice(
-        seq('CONSTANT:',$.sname,$.sname),
-        seq('SYMBOL:',$.sname),
-        seq('MAIN:',$.sname,$.sname),
-        seq('HELP:',$.sname,$.words,';'),
-        seq('SYMBOLS:',$.sname,$.namel,';'),
-        seq('SYNTAX:',$.sname,$.words,';'),
-        seq('ALIEN:',$.sname),
-        seq('STRUCT:',$.sname,$.words,';'),
-        seq('FUNCTION:',$.sname,$.sname,'(',$.words,')'),
-        seq('FUNCTION-ALIAS:',$.sname,$.sname,$.sname,'(',$.words,')'),
+        seq('CONSTANT:',field('id',$.sname),$.sname),
+        seq('SYMBOL:',field('id',$.sname)),
+        seq('MAIN:',field('id',$.sname)),
+        seq('HELP:',field('id',$.sname),$.words,$.block_end),
+        seq('SYMBOLS:',field('id',$.sname),$.namel,$.block_end),
+        seq('SYNTAX:',field('id',$.sname),$.words,$.block_end),
+        seq('ALIEN:',field('id',$.sname)),
+        seq('STRUCT:',field('id',$.sname),$.words,$.block_end),
+        seq('FUNCTION:',field('id',$.sname),$.sname,'(',$.words,')'),
+        seq('FUNCTION-ALIAS:',field('id',$.sname),$.sname,$.sname,'(',$.words,')'),
     ),
 
     vocab_private: $ => /<PRIVATE|PRIVATE>/,

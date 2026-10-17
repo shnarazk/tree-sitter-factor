@@ -948,6 +948,14 @@
         {
           "type": "SYMBOL",
           "name": "block_p"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block_v"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block_h"
         }
       ]
     },
@@ -1023,6 +1031,56 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "block_v": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "V{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_exprs"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "block_h": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "HI?\\{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_exprs"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },

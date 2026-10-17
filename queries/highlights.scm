@@ -10,3 +10,6 @@
 (stack_effect
   (effect
     (sname) @variable.parameter))
+
+(tuple_or_class_defn
+  (sname) @label)

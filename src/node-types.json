@@ -35,7 +35,37 @@
     "fields": {}
   },
   {
+    "type": "block_h",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block_p",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block_v",
     "named": true,
     "fields": {},
     "children": {
@@ -114,7 +144,15 @@
           "named": true
         },
         {
+          "type": "block_h",
+          "named": true
+        },
+        {
           "type": "block_p",
+          "named": true
+        },
+        {
+          "type": "block_v",
           "named": true
         },
         {
@@ -429,6 +467,10 @@
   },
   {
     "type": "USING:",
+    "named": false
+  },
+  {
+    "type": "V{",
     "named": false
   },
   {

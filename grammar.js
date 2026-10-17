@@ -81,11 +81,15 @@ module.exports = grammar({
       $.block_b,
       $.block_c,
       $.block_p,
+      $.block_v,
+      $.block_h,
     ),
 
     block_b: $ => seq("[", optional($._exprs), "]"),
     block_c: $ => seq("{", optional($._exprs), "}"),
     block_p: $ => seq("(", optional($._exprs), ")"),
+    block_v: $ => seq("V{", optional($._exprs), "}"),
+    block_h: $ => seq(/HI?\{/, optional($._exprs), "}"),
 
     data: $ => choice(
         $.string,

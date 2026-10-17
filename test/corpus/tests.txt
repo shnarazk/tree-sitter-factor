@@ -205,3 +205,39 @@ Definition 8
         (expr (block_b (expr (sname)) (expr (sname)))) ))
     (expr (sname))
     (block_end)))
+
+=============
+Block 1
+=============
+
+:: block1 ( -- v ) V{ 1 } ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect (sname)))
+    (expr
+      (block_v (expr (data (number)))))
+    (block_end)))
+
+=============
+Block 2
+=============
+
+:: block1 ( -- h ) H{ { 1 2 } } ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect (sname)))
+    (expr
+      (block_h
+        (expr
+          (block_c
+            (expr (data (number)))
+            (expr (data (number)))))))
+    (block_end)))

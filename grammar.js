@@ -20,7 +20,7 @@ module.exports = grammar({
         // $.expr
     ),
 
-    word_defn: $ => prec(1,choice(
+    word_defn: $ => choice(
         seq(/::?/,field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
         seq(/MACRO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),';'),
         seq(/MEMO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),';'),
@@ -30,7 +30,7 @@ module.exports = grammar({
         seq('GENERIC#:',field('id',$.sname),/\d+/,$.stack_effect),
         seq('GENERIC#:',field('id',$.sname),/\d+/,$.stack_effect),
         seq('HOOK:',field('id',$.sname),$.sname,$.stack_effect)
-    )),
+    ),
 
     stack_effect: $ => seq('(',optional($.effect),'--',optional($.effect),')'),
 
@@ -85,11 +85,17 @@ module.exports = grammar({
       $.block_h,
     ),
 
-    block_b: $ => seq("[", optional($._exprs), "]"),
-    block_c: $ => seq("{", optional($._exprs), "}"),
-    block_p: $ => seq("(", optional($._exprs), ")"),
-    block_v: $ => seq("V{", optional($._exprs), "}"),
-    block_h: $ => seq(/HI?\{/, optional($._exprs), "}"),
+    block_b: $ => seq(token('['), optional($._exprs), token(']')),
+    // block_b: $ => seq($.open_bracket, optional($._exprs), $.close_bracket),
+    block_c: $ => seq(token('{'), optional($._exprs), token('}')),
+    block_p: $ => seq(token('('), optional($._exprs), token(')')),
+    block_v: $ => seq(token('V{'), optional($._exprs), token('}')),
+    block_h: $ => choice(
+      seq(token('H{'), optional($._exprs), token('}')),
+      seq(token('HI{'), optional($._exprs), token('}'))),
+
+    // open_bracket: $ => token('['),
+    // close_bracket: $ => token(']'),
 
     data: $ => choice(
         $.string,
@@ -109,10 +115,10 @@ module.exports = grammar({
 
     bool: $ => /[tf]/,
 
-    symbol: $ => choice(
-        /[\\$]\s+\S+/,
-        /M\\\s+\S+\s+\S+/,
-    ),
+    // symbol: $ => choice(
+    //     /[\\$]\s+\S+/,
+    //     /M\\\s+\S+\s+\S+/,
+    // ),
 
     number: $ => choice(
         /[+-]?(?:[\d,]*\d)?\.(?:\d([\d,]*\d)?)?(?:[eE][+-]?\d+)?/,
@@ -129,7 +135,7 @@ module.exports = grammar({
 
     keyword: $ => /(?:deprecated|final|foldable|flushable|inline|recursive)/,
 
-    sname: $ => /[^";](\S)*/,
+    sname: $ => /[^";\s](\S)*/,
 
     namel: $ => repeat1(seq($.sname)),
 

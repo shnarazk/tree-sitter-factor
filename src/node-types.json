@@ -282,16 +282,37 @@
   {
     "type": "stack_effect",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "effect",
-          "named": true
-        }
-      ]
+    "fields": {
+      "input_stack": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "effect",
+            "named": true
+          }
+        ]
+      },
+      "output_stack": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "effect",
+            "named": true
+          }
+        ]
+      },
+      "stack_delimiter": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "--",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {

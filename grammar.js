@@ -32,7 +32,12 @@ module.exports = grammar({
         seq('HOOK:',field('id',$.sname),$.sname,$.stack_effect)
     ),
 
-    stack_effect: $ => seq('(',optional($.effect),'--',optional($.effect),')'),
+    stack_effect: $ => seq(
+      token('('),
+      field('input_stack', optional($.effect)),
+      field('stack_delimiter', token('--')),
+      field('output_stack', optional($.effect)),
+      token(')')),
 
     effect: $ => repeat1(seq($.sname,optional(seq(':',$.stack_effect)))),
 

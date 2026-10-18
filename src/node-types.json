@@ -186,6 +186,46 @@
     }
   },
   {
+    "type": "method_defn",
+    "named": true,
+    "fields": {
+      "id": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "sname",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "sname",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_end",
+          "named": true
+        },
+        {
+          "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "namel",
     "named": true,
     "fields": {},
@@ -254,6 +294,10 @@
       "types": [
         {
           "type": "import_defn",
+          "named": true
+        },
+        {
+          "type": "method_defn",
           "named": true
         },
         {

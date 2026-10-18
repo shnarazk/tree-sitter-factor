@@ -241,3 +241,18 @@ Block 2
             (expr (data (number)))
             (expr (data (number)))))))
     (block_end)))
+
+=============
+Method 1
+=============
+
+M: class method1 1 + ;
+---
+
+(source_file
+  (method_defn
+    (sname)
+    (sname)
+    (expr (data (number)))
+    (expr (sname))
+    (block_end)))

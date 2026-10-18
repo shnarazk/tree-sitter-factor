@@ -47,6 +47,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "method_defn"
+        },
+        {
+          "type": "SYMBOL",
           "name": "import_defn"
         },
         {
@@ -147,8 +151,8 @@
               ]
             },
             {
-              "type": "STRING",
-              "value": ";"
+              "type": "SYMBOL",
+              "name": "block_end"
             }
           ]
         },
@@ -184,8 +188,8 @@
               ]
             },
             {
-              "type": "STRING",
-              "value": ";"
+              "type": "SYMBOL",
+              "name": "block_end"
             }
           ]
         },
@@ -221,45 +225,8 @@
               ]
             },
             {
-              "type": "STRING",
-              "value": ";"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "PATTERN",
-              "value": "M::?"
-            },
-            {
-              "type": "FIELD",
-              "name": "id",
-              "content": {
-                "type": "SYMBOL",
-                "name": "sname"
-              }
-            },
-            {
               "type": "SYMBOL",
-              "name": "sname"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_exprs"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "STRING",
-              "value": ";"
+              "name": "block_end"
             }
           ]
         },
@@ -356,6 +323,52 @@
             {
               "type": "SYMBOL",
               "name": "stack_effect"
+            }
+          ]
+        }
+      ]
+    },
+    "method_defn": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "M::?"
+            },
+            {
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "sname"
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "id",
+              "content": {
+                "type": "SYMBOL",
+                "name": "sname"
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_exprs"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "block_end"
             }
           ]
         }

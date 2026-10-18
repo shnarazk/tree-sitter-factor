@@ -13,6 +13,7 @@ module.exports = grammar({
 
     _definition: $ => choice(
         $.word_defn,
+        $.method_defn,
         $.import_defn,
         $.tuple_or_class_defn,
         $.other_syntax_defn,
@@ -22,14 +23,17 @@ module.exports = grammar({
 
     word_defn: $ => choice(
         seq(/::?/,field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
-        seq(/MACRO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),';'),
-        seq(/MEMO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),';'),
-        seq(/TYPED::?/,field('id',$.sname),$.stack_effect,optional($._exprs),';'),
-        seq(/M::?/,field('id',$.sname),$.sname,optional($._exprs),';'),
+        seq(/MACRO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
+        seq(/MEMO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
+        seq(/TYPED::?/,field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
         seq('GENERIC:',field('id',$.sname),$.stack_effect),
         seq('GENERIC#:',field('id',$.sname),/\d+/,$.stack_effect),
         seq('GENERIC#:',field('id',$.sname),/\d+/,$.stack_effect),
         seq('HOOK:',field('id',$.sname),$.sname,$.stack_effect)
+    ),
+
+    method_defn: $ => choice(
+        seq(/M::?/,field('type',$.sname),field('id',$.sname),optional($._exprs),$.block_end),
     ),
 
     stack_effect: $ => seq(

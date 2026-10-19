@@ -18,7 +18,7 @@ module.exports = grammar({
         $.tuple_or_class_defn,
         $.other_syntax_defn,
         $.vocab_private,
-        // $.expr
+        $.expr
     ),
 
     word_defn: $ => choice(

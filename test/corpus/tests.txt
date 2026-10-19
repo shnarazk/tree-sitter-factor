@@ -247,6 +247,8 @@ Method 1
 =============
 
 M: class method1 1 + ;
+{ 1 } [ 1 ] unit-test
+M: class method2 * ;
 ---
 
 (source_file
@@ -255,4 +257,13 @@ M: class method1 1 + ;
     (sname)
     (expr (data (number)))
     (expr (sname))
-    (block_end)))
+    (block_end))
+  (expr (block_c (expr (data (number)))))
+  (expr (block_b (expr (data (number)))))
+  (expr (sname))
+  (method_defn
+    (sname)
+    (sname)
+    (expr (sname))
+    (block_end))
+  )

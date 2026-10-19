@@ -293,6 +293,10 @@
       "required": false,
       "types": [
         {
+          "type": "expr",
+          "named": true
+        },
+        {
           "type": "import_defn",
           "named": true
         },

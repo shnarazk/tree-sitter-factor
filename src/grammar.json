@@ -64,6 +64,10 @@
         {
           "type": "SYMBOL",
           "name": "vocab_private"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expr"
         }
       ]
     },

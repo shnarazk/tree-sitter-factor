@@ -153,8 +153,8 @@ module.exports = grammar({
     words: $ => repeat1(seq($.word)),
 
     comment: $ => choice(
-        /!\s+.*\n/,
-        /#!\s+.*\n/,
+        /!\n/,
+        /![ \t].*\n/,
         /\/\*\s+(?:.|\n)*?\s\*\//
     )
   }

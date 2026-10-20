@@ -1408,11 +1408,11 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "!\\s+.*\\n"
+          "value": "!\\n"
         },
         {
           "type": "PATTERN",
-          "value": "#!\\s+.*\\n"
+          "value": "![ \\t].*\\n"
         },
         {
           "type": "PATTERN",

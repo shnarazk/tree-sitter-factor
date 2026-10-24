@@ -101,7 +101,8 @@ module.exports = grammar({
     block_v: $ => seq(token('V{'), optional($._exprs), token('}')),
     block_h: $ => choice(
       seq(token('H{'), optional($._exprs), token('}')),
-      seq(token('HI{'), optional($._exprs), token('}'))),
+      seq(token('HS{'), optional($._exprs), token('}'))
+    ),
 
     // open_bracket: $ => token('['),
     // close_bracket: $ => token(']'),

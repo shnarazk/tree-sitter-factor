@@ -25,4 +25,4 @@
 
 [ (number) (string) (bool) ] @constant
 
-[ "(" ")" "[" "]" "{" "}" "V{" ] @punctuation.bracket
+[ "(" ")" "[" "]" "{" "}" "V{" "H{" "HS{" ] @punctuation.bracket

@@ -117,11 +117,11 @@
       "required": true,
       "types": [
         {
-          "type": "sname",
+          "type": "parameter",
           "named": true
         },
         {
-          "type": "stack_effect",
+          "type": "quotation_parameter",
           "named": true
         }
       ]
@@ -284,6 +284,25 @@
     }
   },
   {
+    "type": "quotation_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "quotation_name",
+          "named": true
+        },
+        {
+          "type": "stack_effect",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -350,17 +369,17 @@
             "named": true
           }
         ]
-      },
-      "stack_delimiter": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "--",
-            "named": false
-          }
-        ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "effect_delimiter",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -465,14 +484,6 @@
   },
   {
     "type": ")",
-    "named": false
-  },
-  {
-    "type": "--",
-    "named": false
-  },
-  {
-    "type": ":",
     "named": false
   },
   {
@@ -600,7 +611,19 @@
     "named": true
   },
   {
+    "type": "effect_delimiter",
+    "named": true
+  },
+  {
     "type": "keyword",
+    "named": true
+  },
+  {
+    "type": "parameter",
+    "named": true
+  },
+  {
+    "type": "quotation_name",
     "named": true
   },
   {

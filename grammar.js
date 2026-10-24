@@ -39,11 +39,18 @@ module.exports = grammar({
     stack_effect: $ => seq(
       token('('),
       field('input_stack', optional($.effect)),
-      field('stack_delimiter', token('--')),
+      $.effect_delimiter,
       field('output_stack', optional($.effect)),
       token(')')),
 
-    effect: $ => repeat1(seq($.sname,optional(seq(':',$.stack_effect)))),
+    // effect: $ => repeat1(seq($.parameter,optional(seq(token(':'),$.stack_effect)))),
+    effect: $ => repeat1(
+      choice($.parameter, $.quotation_parameter)
+    ),
+
+    effect_delimiter: $ => token('--'),
+
+    quotation_parameter: $ => seq($.quotation_name, $.stack_effect),
 
     import_defn: $ => choice(
         seq('USING:',$.namel,';'),
@@ -145,7 +152,11 @@ module.exports = grammar({
 
     keyword: $ => /(?:deprecated|final|foldable|flushable|inline|recursive)/,
 
-    sname: $ => /[^";\s](\S)*/,
+    sname: $ => /[^";\s]\S*/,
+
+    parameter: $ => /[^"(;:\s]+/,
+
+    quotation_name: $ => /[^"(;:\s]+:/,
 
     namel: $ => repeat1(seq($.sname)),
 

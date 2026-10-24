@@ -9,7 +9,8 @@ Definition 1
   (word_defn
     (sname)
     (stack_effect
-      (effect (sname)))
+      (effect_delimiter)
+      (effect (parameter)))
     (expr
       (data (number)))
     (block_end)))
@@ -25,8 +26,9 @@ Definition 2
   (word_defn
     (sname)
     (stack_effect
-      (effect (sname))
-      (effect (sname)))
+      (effect (parameter))
+      (effect_delimiter)
+      (effect (parameter)))
     (expr
       (sname))
     (block_end)))
@@ -43,12 +45,13 @@ Definition 3
     (sname)
     (stack_effect
       (effect
-        (sname)
-        (sname)
-        (sname))
+        (parameter)
+        (parameter)
+        (parameter))
+      (effect_delimiter)
       (effect
-        (sname)
-        (sname)))
+        (parameter)
+        (parameter)))
     (expr (sname))
     (block_end)))
 
@@ -65,24 +68,26 @@ Definition 3a
     (sname)
     (stack_effect
       (effect
-        (sname)
-        (sname)
-        (sname))
+        (parameter)
+        (parameter)
+        (parameter))
+      (effect_delimiter)
       (effect
-        (sname)
-        (sname)))
+        (parameter)
+        (parameter)))
     (expr (sname))
     (block_end))
   (word_defn
     (sname)
     (stack_effect
       (effect
-        (sname)
-        (sname)
-        (sname))
+        (parameter)
+        (parameter)
+        (parameter))
+      (effect_delimiter)
       (effect
-        (sname)
-        (sname)))
+        (parameter)
+        (parameter)))
     (expr (sname))
     (block_end)) )
 
@@ -98,12 +103,13 @@ Definition 4
     (sname)
     (stack_effect
       (effect
-        (sname)
-        (sname)
-        (sname))
+        (parameter)
+        (parameter)
+        (parameter))
+      (effect_delimiter)
       (effect
-        (sname)
-        (sname)))
+        (parameter)
+        (parameter)))
     (expr (data (number)))
     (expr (data (number)))
     (block_end)))
@@ -120,12 +126,13 @@ Definition 5
     (sname)
     (stack_effect
       (effect
-        (sname)
-        (sname)
-        (sname))
+        (parameter)
+        (parameter)
+        (parameter))
+      (effect_delimiter)
       (effect
-        (sname)
-        (sname)))
+        (parameter)
+        (parameter)))
     (expr (sname))
     (expr (sname))
     (block_end)))
@@ -142,12 +149,13 @@ Definition 6
     (sname)
     (stack_effect
       (effect
-        (sname)
-        (sname)
-        (sname))
+        (parameter)
+        (parameter)
+        (parameter))
+      (effect_delimiter)
       (effect
-        (sname)
-        (sname)))
+        (parameter)
+        (parameter)))
     (expr
       (block_b
         (expr (sname))
@@ -166,12 +174,13 @@ Definition 7
     (sname)
     (stack_effect
       (effect
-        (sname)
-        (sname)
-        (sname))
+        (parameter)
+        (parameter)
+        (parameter))
+      (effect_delimiter)
       (effect
-        (sname)
-        (sname)))
+        (parameter)
+        (parameter)))
     (expr (data (string)))
     (expr (data (string)))
     (block_end)))
@@ -193,7 +202,9 @@ Definition 8
 (source_file
   (word_defn
     (sname)
-    (stack_effect (effect (sname)))
+    (stack_effect
+      (effect_delimiter)
+      (effect (parameter)))
     (expr (sname))
     (expr
       (block_c
@@ -217,7 +228,8 @@ Block 1
   (word_defn
     (sname)
     (stack_effect
-      (effect (sname)))
+      (effect_delimiter)
+      (effect (parameter)))
     (expr
       (block_v (expr (data (number)))))
     (block_end)))
@@ -233,7 +245,8 @@ Block 2
   (word_defn
     (sname)
     (stack_effect
-      (effect (sname)))
+      (effect_delimiter)
+      (effect (parameter)))
     (expr
       (block_h
         (expr
@@ -267,3 +280,28 @@ M: class method2 * ;
     (expr (sname))
     (block_end))
   )
+
+=============
+Stack effect with quotation decorations 1
+=============
+
+: f ( x quot: ( x -- y ) -- y ) call ;
+---
+
+(source_file
+  (word_defn
+    (sname)
+    (stack_effect
+      (effect
+        (parameter)
+        (quotation_parameter
+          (quotation_name)
+          (stack_effect
+            (effect (parameter))
+            (effect_delimiter)
+            (effect (parameter))
+          )))
+      (effect_delimiter)
+      (effect (parameter)))
+    (expr (sname))
+    (block_end)))

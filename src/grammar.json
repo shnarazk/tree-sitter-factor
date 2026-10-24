@@ -405,15 +405,8 @@
           }
         },
         {
-          "type": "FIELD",
-          "name": "stack_delimiter",
-          "content": {
-            "type": "TOKEN",
-            "content": {
-              "type": "STRING",
-              "value": "--"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "effect_delimiter"
         },
         {
           "type": "FIELD",
@@ -443,35 +436,38 @@
     "effect": {
       "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
             "type": "SYMBOL",
-            "name": "sname"
+            "name": "parameter"
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ":"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "stack_effect"
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "quotation_parameter"
           }
         ]
       }
+    },
+    "effect_delimiter": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "--"
+      }
+    },
+    "quotation_parameter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "quotation_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "stack_effect"
+        }
+      ]
     },
     "import_defn": {
       "type": "CHOICE",
@@ -1373,7 +1369,15 @@
     },
     "sname": {
       "type": "PATTERN",
-      "value": "[^\";\\s](\\S)*"
+      "value": "[^\";\\s]\\S*"
+    },
+    "parameter": {
+      "type": "PATTERN",
+      "value": "[^\"(;:\\s]+"
+    },
+    "quotation_name": {
+      "type": "PATTERN",
+      "value": "[^\"(;:\\s]+:"
     },
     "namel": {
       "type": "REPEAT1",

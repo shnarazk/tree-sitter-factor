@@ -1,5 +1,8 @@
-(keyword) @keyword
+(bool) @boolean
 (comment) @comment
+(character) @variant
+(keyword) @keyword
+(number) @number
 
 [ (import_defn) "USING:" (vocab_private) ] @property
 

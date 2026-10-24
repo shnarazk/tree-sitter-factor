@@ -116,10 +116,9 @@ module.exports = grammar({
 
     data: $ => choice(
         $.string,
+        $.character,
         $.bool,
-        // $.symbol,
         $.number,
-        // $.keyword
     ),
 
     string: $ => choice(
@@ -127,7 +126,11 @@ module.exports = grammar({
         // /"(?:\\\\|\\"|[^"])*"/,
         /"(\\\\|\\"|[^"])*"/,
         // /(\S+")(\s+)((?:\\\\|\\"|[^"])*")/,
-        /(CHAR:)(\s+)(\\[\\abfnrstv]|[^\\]\S*)/
+    ),
+
+    character: $ => seq(
+        token('CHAR:'),
+        /(\\[\\abfnrstv]|[^\\]\S*)/
     ),
 
     bool: $ => /[tf]/,

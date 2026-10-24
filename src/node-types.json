@@ -80,6 +80,11 @@
     }
   },
   {
+    "type": "character",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true,
@@ -95,6 +100,10 @@
       "types": [
         {
           "type": "bool",
+          "named": true
+        },
+        {
+          "type": "character",
           "named": true
         },
         {
@@ -504,6 +513,10 @@
   },
   {
     "type": "C:",
+    "named": false
+  },
+  {
+    "type": "CHAR:",
     "named": false
   },
   {

@@ -1297,6 +1297,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "character"
+        },
+        {
+          "type": "SYMBOL",
           "name": "bool"
         },
         {
@@ -1311,10 +1315,22 @@
         {
           "type": "PATTERN",
           "value": "\"(\\\\\\\\|\\\\\"|[^\"])*\""
+        }
+      ]
+    },
+    "character": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "CHAR:"
+          }
         },
         {
           "type": "PATTERN",
-          "value": "(CHAR:)(\\s+)(\\\\[\\\\abfnrstv]|[^\\\\]\\S*)"
+          "value": "(\\\\[\\\\abfnrstv]|[^\\\\]\\S*)"
         }
       ]
     },

@@ -3,6 +3,7 @@
 (character) @variant
 (keyword) @keyword
 (number) @number
+(string) @string
 
 [ (import_defn) "USING:" (vocab_private) ] @property
 
@@ -26,6 +27,7 @@
   (effect_delimiter) @constant
   output_stack:(effect) @variable.special)
 
-[ (number) (string) (bool) ] @constant
+(block_l
+  (effect) @variable.parameter)
 
 [ "(" ")" "[" "]" "{" "}" "V{" "H{" "HS{" ] @punctuation.bracket

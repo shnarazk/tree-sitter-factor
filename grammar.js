@@ -96,6 +96,7 @@ module.exports = grammar({
       $.data,
       $.block_b,
       $.block_c,
+      $.block_l,
       $.block_p,
       $.block_v,
       $.block_h,
@@ -104,6 +105,7 @@ module.exports = grammar({
     block_b: $ => seq(token('['), optional($._exprs), token(']')),
     // block_b: $ => seq($.open_bracket, optional($._exprs), $.close_bracket),
     block_c: $ => seq(token('{'), optional($._exprs), token('}')),
+    block_l: $ => seq(token('[|'), optional($.effect), token('|'), optional($._exprs), token(']')),
     block_p: $ => seq(token('('), optional($._exprs), token(')')),
     block_v: $ => seq(token('V{'), optional($._exprs), token('}')),
     block_h: $ => choice(

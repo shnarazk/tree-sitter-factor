@@ -1085,6 +1085,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "block_l"
+        },
+        {
+          "type": "SYMBOL",
           "name": "block_p"
         },
         {
@@ -1155,6 +1159,56 @@
           "content": {
             "type": "STRING",
             "value": "}"
+          }
+        }
+      ]
+    },
+    "block_l": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "[|"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "effect"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "|"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_exprs"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "]"
           }
         }
       ]

@@ -353,3 +353,20 @@ Character 2
       (effect (parameter)))
     (expr (data (character)))
     (block_end)))
+
+=============
+Lexical variables
+=============
+
+[| a b | a b * ]
+---
+
+(source_file
+  (expr
+    (block_l
+      (effect
+        (parameter)
+        (parameter))
+    (expr (sname))
+    (expr (sname))
+    (expr (sname)))))

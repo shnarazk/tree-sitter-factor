@@ -28,7 +28,9 @@
 (stack_effect
   (effect_delimiter) @constant)
 
-(block_l
+(quotation_l
   (effect) @variable.parameter)
 
-[ "(" ")" "[" "]" "{" "}" "V{" "H{" "HS{" ] @punctuation.bracket
+[
+  "(" ")" "[" "]" "{" "}" "V{" "H{" "HS{" "'[" "[|"
+] @punctuation.bracket

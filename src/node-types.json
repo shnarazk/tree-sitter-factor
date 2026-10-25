@@ -1,20 +1,5 @@
 [
   {
-    "type": "block_b",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "expr",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "block_c",
     "named": true,
     "fields": {},
@@ -42,25 +27,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "expr",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "block_l",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "effect",
-          "named": true
-        },
         {
           "type": "expr",
           "named": true
@@ -164,19 +130,11 @@
       "required": true,
       "types": [
         {
-          "type": "block_b",
-          "named": true
-        },
-        {
           "type": "block_c",
           "named": true
         },
         {
           "type": "block_h",
-          "named": true
-        },
-        {
-          "type": "block_l",
           "named": true
         },
         {
@@ -189,6 +147,18 @@
         },
         {
           "type": "data",
+          "named": true
+        },
+        {
+          "type": "quotation",
+          "named": true
+        },
+        {
+          "type": "quotation_f",
+          "named": true
+        },
+        {
+          "type": "quotation_l",
           "named": true
         },
         {
@@ -310,6 +280,55 @@
         },
         {
           "type": "words",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quotation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quotation_f",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quotation_l",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "effect",
+          "named": true
+        },
+        {
+          "type": "expr",
           "named": true
         }
       ]
@@ -509,6 +528,10 @@
         }
       ]
     }
+  },
+  {
+    "type": "'[",
+    "named": false
   },
   {
     "type": "(",

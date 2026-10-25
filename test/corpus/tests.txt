@@ -157,7 +157,7 @@ Definition 6
         (parameter)
         (parameter)))
     (expr
-      (block_b
+      (quotation
         (expr (sname))
         (expr (sname))))
     (block_end)))
@@ -210,10 +210,10 @@ Definition 8
       (block_c
         (expr
           (block_c
-            (expr (block_b (expr (data (number))) (expr (sname))))
-            (expr (block_b (expr (data (number))) (expr (data (string))) (expr (block_c)))) ))
+            (expr (quotation (expr (data (number))) (expr (sname))))
+            (expr (quotation (expr (data (number))) (expr (data (string))) (expr (block_c)))) ))
         (comment)
-        (expr (block_b (expr (sname)) (expr (sname)))) ))
+        (expr (quotation (expr (sname)) (expr (sname)))) ))
     (expr (sname))
     (block_end)))
 
@@ -272,7 +272,7 @@ M: class method2 * ;
     (expr (sname))
     (block_end))
   (expr (block_c (expr (data (number)))))
-  (expr (block_b (expr (data (number)))))
+  (expr (quotation (expr (data (number)))))
   (expr (sname))
   (method_defn
     (sname)
@@ -363,10 +363,24 @@ Lexical variables
 
 (source_file
   (expr
-    (block_l
+    (quotation_l
       (effect
         (parameter)
         (parameter))
     (expr (sname))
     (expr (sname))
+    (expr (sname)))))
+
+=============
+Fried quotations
+=============
+
+'[ _ 1 @ ]
+---
+
+(source_file
+  (expr
+    (quotation_f
+    (expr (sname))
+    (expr (data (number)))
     (expr (sname)))))

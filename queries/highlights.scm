@@ -23,9 +23,10 @@
   id:(sname) @type)
 
 (stack_effect
-  input_stack:(effect) @variable.parameter
-  (effect_delimiter) @constant
-  output_stack:(effect) @variable.special)
+  (effect) @variable.parameter)
+
+(stack_effect
+  (effect_delimiter) @constant)
 
 (block_l
   (effect) @variable.parameter)

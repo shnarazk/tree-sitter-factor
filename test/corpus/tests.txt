@@ -208,10 +208,16 @@ Definition 8
     (expr (sname))
     (expr
       (block_c
+        (block_c_begin)
         (expr
           (block_c
+            (block_c_begin)
             (expr (quotation (expr (data (number))) (expr (sname))))
-            (expr (quotation (expr (data (number))) (expr (data (string))) (expr (block_c)))) ))
+            (expr
+              (quotation
+                (expr (data (number)))
+                (expr (data (string)))
+                (expr (block_c (block_c_begin))))) ))
         (comment)
         (expr (quotation (expr (sname)) (expr (sname)))) ))
     (expr (sname))
@@ -231,7 +237,9 @@ Block 1
       (effect_delimiter)
       (effect (parameter)))
     (expr
-      (block_v (expr (data (number)))))
+      (block_c
+        (block_c_begin)
+        (expr (data (number)))))
     (block_end)))
 
 =============
@@ -248,9 +256,11 @@ Block 2
       (effect_delimiter)
       (effect (parameter)))
     (expr
-      (block_h
+      (block_c
+        (block_c_begin)
         (expr
           (block_c
+            (block_c_begin)
             (expr (data (number)))
             (expr (data (number)))))))
     (block_end)))
@@ -271,7 +281,7 @@ M: class method2 * ;
     (expr (data (number)))
     (expr (sname))
     (block_end))
-  (expr (block_c (expr (data (number)))))
+  (expr (block_c (block_c_begin) (expr (data (number)))))
   (expr (quotation (expr (data (number)))))
   (expr (sname))
   (method_defn

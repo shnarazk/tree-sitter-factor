@@ -5,14 +5,23 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "block_c_begin",
+          "named": true
+        },
         {
           "type": "expr",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "block_c_begin",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "block_end",
@@ -20,28 +29,17 @@
     "fields": {}
   },
   {
-    "type": "block_h",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "expr",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "block_p",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "block_p_begin",
+          "named": true
+        },
         {
           "type": "expr",
           "named": true
@@ -50,19 +48,9 @@
     }
   },
   {
-    "type": "block_v",
+    "type": "block_p_begin",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "expr",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "character",
@@ -134,15 +122,7 @@
           "named": true
         },
         {
-          "type": "block_h",
-          "named": true
-        },
-        {
           "type": "block_p",
-          "named": true
-        },
-        {
-          "type": "block_v",
           "named": true
         },
         {
@@ -159,6 +139,10 @@
         },
         {
           "type": "quotation_l",
+          "named": true
+        },
+        {
+          "type": "quotation_let",
           "named": true
         },
         {
@@ -288,7 +272,18 @@
   {
     "type": "quotation",
     "named": true,
-    "fields": {},
+    "fields": {
+      "open_bracket": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "[",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -303,7 +298,18 @@
   {
     "type": "quotation_f",
     "named": true,
-    "fields": {},
+    "fields": {
+      "open_bracket": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "'[",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -318,7 +324,28 @@
   {
     "type": "quotation_l",
     "named": true,
-    "fields": {},
+    "fields": {
+      "open_bracket": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "[|",
+            "named": false
+          }
+        ]
+      },
+      "quotation_delimiter": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "|",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -329,6 +356,46 @@
         },
         {
           "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quotation_let",
+    "named": true,
+    "fields": {
+      "open_bracket": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "[let",
+            "named": false
+          }
+        ]
+      },
+      "quotation_delimiter": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ":>",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        },
+        {
+          "type": "parameter",
           "named": true
         }
       ]
@@ -434,11 +501,6 @@
     }
   },
   {
-    "type": "string",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "tuple_or_class_defn",
     "named": true,
     "fields": {
@@ -530,7 +592,19 @@
     }
   },
   {
+    "type": "'HS{",
+    "named": false
+  },
+  {
+    "type": "'H{",
+    "named": false
+  },
+  {
     "type": "'[",
+    "named": false
+  },
+  {
+    "type": "'{",
     "named": false
   },
   {
@@ -539,6 +613,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": ":>",
     "named": false
   },
   {
@@ -558,6 +636,14 @@
     "named": false
   },
   {
+    "type": "BV{",
+    "named": false
+  },
+  {
+    "type": "B{",
+    "named": false
+  },
+  {
     "type": "C:",
     "named": false
   },
@@ -567,6 +653,14 @@
   },
   {
     "type": "CONSTANT:",
+    "named": false
+  },
+  {
+    "type": "CS{",
+    "named": false
+  },
+  {
+    "type": "C{",
     "named": false
   },
   {
@@ -599,6 +693,10 @@
   },
   {
     "type": "H{",
+    "named": false
+  },
+  {
+    "type": "IH{",
     "named": false
   },
   {
@@ -650,6 +748,10 @@
     "named": false
   },
   {
+    "type": "T{",
+    "named": false
+  },
+  {
     "type": "USING:",
     "named": false
   },
@@ -658,7 +760,15 @@
     "named": false
   },
   {
+    "type": "W{",
+    "named": false
+  },
+  {
     "type": "[",
+    "named": false
+  },
+  {
+    "type": "[let",
     "named": false
   },
   {
@@ -674,16 +784,40 @@
     "named": true
   },
   {
+    "type": "call(",
+    "named": false
+  },
+  {
     "type": "effect_delimiter",
     "named": true
+  },
+  {
+    "type": "execute(",
+    "named": false
+  },
+  {
+    "type": "intersection{",
+    "named": false
   },
   {
     "type": "keyword",
     "named": true
   },
   {
+    "type": "maybe{",
+    "named": false
+  },
+  {
+    "type": "not{",
+    "named": false
+  },
+  {
     "type": "parameter",
     "named": true
+  },
+  {
+    "type": "predicate{",
+    "named": false
   },
   {
     "type": "quotation_name",
@@ -696,6 +830,14 @@
   {
     "type": "sname",
     "named": true
+  },
+  {
+    "type": "string",
+    "named": true
+  },
+  {
+    "type": "union{",
+    "named": false
   },
   {
     "type": "vocab_private",

@@ -96,26 +96,46 @@ module.exports = grammar({
       $.data,
       $.block_c,
       $.block_p,
-      $.block_v,
-      $.block_h,
       $.quotation,
       $.quotation_f,
       $.quotation_l,
+      $.quotation_let,
     ),
 
-    quotation: $ => seq(token('['), optional($._exprs), token(']')),
-    quotation_f: $ => seq(token('\'['), optional($._exprs), token(']')),
-    quotation_l: $ => seq(token('[|'), optional($.effect), token('|'), optional($._exprs), token(']')),
-    block_c: $ => seq(token('{'), optional($._exprs), token('}')),
-    block_p: $ => seq(token('('), optional($._exprs), token(')')),
-    block_v: $ => seq(token('V{'), optional($._exprs), token('}')),
-    block_h: $ => choice(
-      seq(token('H{'), optional($._exprs), token('}')),
-      seq(token('HS{'), optional($._exprs), token('}'))
+    quotation: $ => seq(field('open_bracket',token('[')), optional($._exprs), token(']')),
+    quotation_f: $ => seq(field('open_bracket',token('\'[')), optional($._exprs), token(']')),
+    quotation_l: $ => seq(field('open_bracket',token('[|')), optional($.effect), field('quotation_delimiter',token('|')), optional($._exprs), token(']')),
+    quotation_let: $ => seq(field('open_bracket',token('[let')), repeat(seq($.expr, field('quotation_delimiter',token(':>')), $.parameter)), optional($._exprs), token(']')),
+    block_c: $ => seq($.block_c_begin, optional($._exprs), token('}')),
+    block_p: $ => seq($.block_p_begin, optional($._exprs), token(')')),
+
+    block_c_begin: $ => choice(
+      token('\'HS{'),
+      token('\'H{'),
+      token('\'{'),
+      token('B{'),
+      token('BV{'),
+      token('CS{'),
+      token('C{'),
+      token('HS{'),
+      token('H{'),
+      token('IH{'),
+      token('T{'),
+      token('V{'),
+      token('W{'),
+      token('intersection{'),
+      token('maybe{'),
+      token('not{'),
+      token('predicate{'),
+      token('union{'),
+      token('{'),
     ),
 
-    // open_bracket: $ => token('['),
-    // close_bracket: $ => token(']'),
+    block_p_begin: $ => choice(
+      token('call('),
+      token('execute('),
+      token('('),
+    ),
 
     data: $ => choice(
         $.string,
@@ -124,12 +144,12 @@ module.exports = grammar({
         $.number,
     ),
 
-    string: $ => choice(
+    string: $ => // choice(
         // /"""\s(?:.|\n)*?\s"""/,
         // /"(?:\\\\|\\"|[^"])*"/,
         /"(\\\\|\\"|[^"])*"/,
         // /(\S+")(\s+)((?:\\\\|\\"|[^"])*")/,
-    ),
+    // ),
 
     character: $ => seq(
         token('CHAR:'),

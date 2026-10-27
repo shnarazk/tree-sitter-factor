@@ -155,7 +155,26 @@
   {
     "type": "import_defn",
     "named": true,
-    "fields": {},
+    "fields": {
+      "define_label_package": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "QUALIFIED-WITH:",
+            "named": false
+          },
+          {
+            "type": "RENAME:",
+            "named": false
+          },
+          {
+            "type": "USING:",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -175,6 +194,20 @@
     "type": "method_defn",
     "named": true,
     "fields": {
+      "define_label_method": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "M:",
+            "named": false
+          },
+          {
+            "type": "M::",
+            "named": false
+          }
+        ]
+      },
       "id": {
         "multiple": false,
         "required": true,
@@ -239,6 +272,52 @@
     "type": "other_syntax_defn",
     "named": true,
     "fields": {
+      "define_label_other": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ALIEN:",
+            "named": false
+          },
+          {
+            "type": "CONSTANT:",
+            "named": false
+          },
+          {
+            "type": "FUNCTION-ALIAS:",
+            "named": false
+          },
+          {
+            "type": "FUNCTION:",
+            "named": false
+          },
+          {
+            "type": "HELP:",
+            "named": false
+          },
+          {
+            "type": "MAIN:",
+            "named": false
+          },
+          {
+            "type": "STRUCT:",
+            "named": false
+          },
+          {
+            "type": "SYMBOL:",
+            "named": false
+          },
+          {
+            "type": "SYMBOLS:",
+            "named": false
+          },
+          {
+            "type": "SYNTAX:",
+            "named": false
+          }
+        ]
+      },
       "id": {
         "multiple": false,
         "required": true,
@@ -508,6 +587,36 @@
     "type": "tuple_or_class_defn",
     "named": true,
     "fields": {
+      "define_label_ext": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "C:",
+            "named": false
+          },
+          {
+            "type": "INSTANCE:",
+            "named": false
+          },
+          {
+            "type": "PREDICATE:",
+            "named": false
+          },
+          {
+            "type": "SINGLETON:",
+            "named": false
+          },
+          {
+            "type": "SINGLETONS:",
+            "named": false
+          },
+          {
+            "type": "SLOT:",
+            "named": false
+          }
+        ]
+      },
       "id": {
         "multiple": false,
         "required": true,
@@ -542,6 +651,24 @@
     "type": "word_defn",
     "named": true,
     "fields": {
+      "define_label_word": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "GENERIC#:",
+            "named": false
+          },
+          {
+            "type": "GENERIC:",
+            "named": false
+          },
+          {
+            "type": "HOOK:",
+            "named": false
+          }
+        ]
+      },
       "id": {
         "multiple": false,
         "required": true,
@@ -705,6 +832,14 @@
   },
   {
     "type": "INSTANCE:",
+    "named": false
+  },
+  {
+    "type": "M:",
+    "named": false
+  },
+  {
+    "type": "M::",
     "named": false
   },
   {

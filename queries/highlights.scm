@@ -5,8 +5,6 @@
 (number) @number
 (string) @string
 
-[ (import_defn) "USING:" (vocab_private) ] @property
-
 (word_defn
    id:(sname) @function)
 
@@ -41,3 +39,9 @@
   (block_c_begin) (block_p_begin)
   ")"  "]" "}"
 ] @punctuation.bracket
+
+(method_defn         define_label_method:  _ @tag)
+(word_defn           define_label_word:    _ @tag)
+(import_defn         define_label_package: _ @tag)
+(tuple_or_class_defn define_label_ext:     _ @tag)
+(other_syntax_defn   define_label_other:   _ @tag)

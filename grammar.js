@@ -22,25 +22,22 @@ module.exports = grammar({
     ),
 
     word_defn: $ => choice(
-        seq(/::?/,field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
-        seq(/MACRO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
-        seq(/MEMO::?/,field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
-        seq(/TYPED::?/,field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
-        seq('GENERIC:',field('id',$.sname),$.stack_effect),
-        seq('GENERIC#:',field('id',$.sname),/\d+/,$.stack_effect),
-        seq('GENERIC#:',field('id',$.sname),/\d+/,$.stack_effect),
-        seq('HOOK:',field('id',$.sname),$.sname,$.stack_effect)
+        seq(field('define_label_word',/::?/),field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
+        seq(field('define_label_word',/MACRO::?/),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
+        seq(field('define_label_word',/MEMO::?/),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
+        seq(field('define_label_word',/TYPED::?/),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
+        seq(field('define_label_word','GENERIC:'),field('id',$.sname),$.stack_effect),
+        seq(field('define_label_word','GENERIC#:'),field('id',$.sname),/\d+/,$.stack_effect),
+        seq(field('define_label_word','HOOK:'),field('id',$.sname),$.sname,$.stack_effect)
     ),
 
-    method_defn: $ => choice(
-        seq(
-          /M::?/,
-          field('type',$.sname),
-          field('id',$.sname),
-          optional($.stack_effect),
-          optional($._exprs),
-          $.block_end
-        ),
+    method_defn: $ => seq(
+        field('define_label_method',choice('M:', 'M::')),
+        field('type',$.sname),
+        field('id',$.sname),
+        optional($.stack_effect),
+        optional($._exprs),
+        $.block_end
     ),
 
     stack_effect: $ => seq(
@@ -60,38 +57,38 @@ module.exports = grammar({
     quotation_parameter: $ => seq($.quotation_name, $.stack_effect),
 
     import_defn: $ => choice(
-        seq('USING:',$.namel,';'),
-        seq(/USE:|UNUSE:|IN:|QUALIFIED:/,$.sname),
-        seq('QUALIFIED-WITH:',$.sname,$.sname),
-        seq(/FROM:|EXCLUDE:/,$.sname,'=>',$.namel,';'),
-        seq('RENAME:',$.sname,$.sname,'=>',$.sname),
-        seq(/ALIAS:|TYPEDEF:/,$.sname,$.sname),
-        seq(/DEFER:|FORGET:|POSTPONE:/,$.sname)
+        seq(field('define_label_package','USING:'),$.namel,';'),
+        seq(field('define_label_package',/USE:|UNUSE:|IN:|QUALIFIED:/),$.sname),
+        seq(field('define_label_package','QUALIFIED-WITH:'),$.sname,$.sname),
+        seq(field('define_label_package',/FROM:|EXCLUDE:/),$.sname,'=>',$.namel,';'),
+        seq(field('define_label_package','RENAME:'),$.sname,$.sname,'=>',$.sname),
+        seq(field('define_label_package',/ALIAS:|TYPEDEF:/),$.sname,$.sname),
+        seq(field('define_label_package',/DEFER:|FORGET:|POSTPONE:/),$.sname)
     ),
 
     tuple_or_class_defn: $ => choice(
-        seq(/TUPLE:|ERROR:/,field('id',$.sname),optional('<'),repeat($.sname),$.block_end),
-        seq(/TUPLE:|ERROR:|BUILTIN:/,field('id',$.namel),$.block_end),
-        seq(/MIXIN:|UNION:|INTERSECTION:/,field('id',$.sname)),
-        seq('PREDICATE:',field('id',$.sname),'<',$.sname),
-        seq('C:',field('id',$.sname),$.sname),
-        seq('INSTANCE:',field('id',$.sname),$.sname),
-        seq('SLOT:',field('id',$.sname)),
-        seq('SINGLETON:',field('id',$.sname)),
-        seq('SINGLETONS:',field('id',$.namel),$.block_end)
+        seq(field('define_label_ext',/TUPLE:|ERROR:/),field('id',$.sname),optional('<'),repeat($.sname),$.block_end),
+        seq(field('define_label_ext',/TUPLE:|ERROR:|BUILTIN:/),field('id',$.namel),$.block_end),
+        seq(field('define_label_ext',/MIXIN:|UNION:|INTERSECTION:/),field('id',$.sname)),
+        seq(field('define_label_ext','PREDICATE:'),field('id',$.sname),'<',$.sname),
+        seq(field('define_label_ext','C:'),field('id',$.sname),$.sname),
+        seq(field('define_label_ext','INSTANCE:'),field('id',$.sname),$.sname),
+        seq(field('define_label_ext','SLOT:'),field('id',$.sname)),
+        seq(field('define_label_ext','SINGLETON:'),field('id',$.sname)),
+        seq(field('define_label_ext','SINGLETONS:'),field('id',$.namel),$.block_end)
     ),
 
     other_syntax_defn: $ => choice(
-        seq('CONSTANT:',field('id',$.sname),$.sname),
-        seq('SYMBOL:',field('id',$.sname)),
-        seq('MAIN:',field('id',$.sname)),
-        seq('HELP:',field('id',$.sname),$.words,$.block_end),
-        seq('SYMBOLS:',field('id',$.sname),$.namel,$.block_end),
-        seq('SYNTAX:',field('id',$.sname),$.words,$.block_end),
-        seq('ALIEN:',field('id',$.sname)),
-        seq('STRUCT:',field('id',$.sname),$.words,$.block_end),
-        seq('FUNCTION:',field('id',$.sname),$.sname,'(',$.words,')'),
-        seq('FUNCTION-ALIAS:',field('id',$.sname),$.sname,$.sname,'(',$.words,')'),
+        seq(field('define_label_other','CONSTANT:'),field('id',$.sname),$.sname),
+        seq(field('define_label_other','SYMBOL:'),field('id',$.sname)),
+        seq(field('define_label_other','MAIN:'),field('id',$.sname)),
+        seq(field('define_label_other','HELP:'),field('id',$.sname),$.words,$.block_end),
+        seq(field('define_label_other','SYMBOLS:'),field('id',$.sname),$.namel,$.block_end),
+        seq(field('define_label_other','SYNTAX:'),field('id',$.sname),$.words,$.block_end),
+        seq(field('define_label_other','ALIEN:'),field('id',$.sname)),
+        seq(field('define_label_other','STRUCT:'),field('id',$.sname),$.words,$.block_end),
+        seq(field('define_label_other','FUNCTION:'),field('id',$.sname),$.sname,'(',$.words,')'),
+        seq(field('define_label_other','FUNCTION-ALIAS:'),field('id',$.sname),$.sname,$.sname,'(',$.words,')'),
     ),
 
     vocab_private: $ => /<PRIVATE|PRIVATE>/,

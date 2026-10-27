@@ -141,7 +141,6 @@ module.exports = grammar({
     block_p_begin: $ => choice(
       token('call('),
       token('execute('),
-      token('('),
     ),
 
     data: $ => choice(

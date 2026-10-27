@@ -1513,13 +1513,6 @@
             "type": "STRING",
             "value": "execute("
           }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "("
-          }
         }
       ]
     },

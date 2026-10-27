@@ -363,6 +363,18 @@
               "members": [
                 {
                   "type": "SYMBOL",
+                  "name": "stack_effect"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
                   "name": "_exprs"
                 },
                 {

@@ -292,6 +292,24 @@ M: class method2 * ;
   )
 
 =============
+Method 2
+=============
+
+M:: class method1 ( -- n ) 1 + ;
+---
+
+(source_file
+  (method_defn
+    (sname)
+    (sname)
+    (stack_effect
+      (effect_delimiter)
+      (effect (parameter)))
+    (expr (data (number)))
+    (expr (sname))
+    (block_end)))
+
+=============
 Stack effect with quotation decorations 1
 =============
 

@@ -33,7 +33,14 @@ module.exports = grammar({
     ),
 
     method_defn: $ => choice(
-        seq(/M::?/,field('type',$.sname),field('id',$.sname),optional($._exprs),$.block_end),
+        seq(
+          /M::?/,
+          field('type',$.sname),
+          field('id',$.sname),
+          optional($.stack_effect),
+          optional($._exprs),
+          $.block_end
+        ),
     ),
 
     stack_effect: $ => seq(

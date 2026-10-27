@@ -143,8 +143,17 @@
               "type": "FIELD",
               "name": "define_label_word",
               "content": {
-                "type": "PATTERN",
-                "value": "MACRO::?"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "MACRO:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "MACRO::"
+                  }
+                ]
               }
             },
             {
@@ -234,8 +243,17 @@
               "type": "FIELD",
               "name": "define_label_word",
               "content": {
-                "type": "PATTERN",
-                "value": "TYPED::?"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "TYPED:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "TYPED::"
+                  }
+                ]
               }
             },
             {
@@ -541,8 +559,25 @@
               "type": "FIELD",
               "name": "define_label_package",
               "content": {
-                "type": "PATTERN",
-                "value": "USE:|UNUSE:|IN:|QUALIFIED:"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "USE:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "UNUSE:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "IN:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "QUALIFIED:"
+                  }
+                ]
               }
             },
             {
@@ -579,8 +614,17 @@
               "type": "FIELD",
               "name": "define_label_package",
               "content": {
-                "type": "PATTERN",
-                "value": "FROM:|EXCLUDE:"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "FROM:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "EXCLUDE:"
+                  }
+                ]
               }
             },
             {
@@ -637,8 +681,17 @@
               "type": "FIELD",
               "name": "define_label_package",
               "content": {
-                "type": "PATTERN",
-                "value": "ALIAS:|TYPEDEF:"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "ALIAS:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "TYPEDEF:"
+                  }
+                ]
               }
             },
             {
@@ -658,8 +711,21 @@
               "type": "FIELD",
               "name": "define_label_package",
               "content": {
-                "type": "PATTERN",
-                "value": "DEFER:|FORGET:|POSTPONE:"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "DEFER:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "FORGET:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "POSTPONE:"
+                  }
+                ]
               }
             },
             {
@@ -758,8 +824,21 @@
               "type": "FIELD",
               "name": "define_label_ext",
               "content": {
-                "type": "PATTERN",
-                "value": "MIXIN:|UNION:|INTERSECTION:"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "MIXIN:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "UNION:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "INTERSECTION:"
+                  }
+                ]
               }
             },
             {

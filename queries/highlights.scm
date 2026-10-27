@@ -40,8 +40,10 @@
   ")"  "]" "}"
 ] @punctuation.bracket
 
+(vocab_private) @attribute
+
 (method_defn         define_label_method:  _ @tag)
 (word_defn           define_label_word:    _ @tag)
-(import_defn         define_label_package: _ @tag)
+(import_defn         define_label_package: _ @attribute)
 (tuple_or_class_defn define_label_ext:     _ @tag)
-(other_syntax_defn   define_label_other:   _ @tag)
+(other_syntax_defn   define_label_other:   _ @attribute)

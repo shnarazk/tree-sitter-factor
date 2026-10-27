@@ -161,11 +161,55 @@
         "required": true,
         "types": [
           {
+            "type": "ALIAS:",
+            "named": false
+          },
+          {
+            "type": "DEFER:",
+            "named": false
+          },
+          {
+            "type": "EXCLUDE:",
+            "named": false
+          },
+          {
+            "type": "FORGET:",
+            "named": false
+          },
+          {
+            "type": "FROM:",
+            "named": false
+          },
+          {
+            "type": "IN:",
+            "named": false
+          },
+          {
+            "type": "POSTPONE:",
+            "named": false
+          },
+          {
             "type": "QUALIFIED-WITH:",
             "named": false
           },
           {
+            "type": "QUALIFIED:",
+            "named": false
+          },
+          {
             "type": "RENAME:",
+            "named": false
+          },
+          {
+            "type": "TYPEDEF:",
+            "named": false
+          },
+          {
+            "type": "UNUSE:",
+            "named": false
+          },
+          {
+            "type": "USE:",
             "named": false
           },
           {
@@ -608,6 +652,14 @@
             "named": false
           },
           {
+            "type": "INTERSECTION:",
+            "named": false
+          },
+          {
+            "type": "MIXIN:",
+            "named": false
+          },
+          {
             "type": "PREDICATE:",
             "named": false
           },
@@ -625,6 +677,10 @@
           },
           {
             "type": "TUPLE:",
+            "named": false
+          },
+          {
+            "type": "UNION:",
             "named": false
           }
         ]
@@ -688,11 +744,27 @@
             "named": false
           },
           {
+            "type": "MACRO:",
+            "named": false
+          },
+          {
+            "type": "MACRO::",
+            "named": false
+          },
+          {
             "type": "MEMO:",
             "named": false
           },
           {
             "type": "MEMO::",
+            "named": false
+          },
+          {
+            "type": "TYPED:",
+            "named": false
+          },
+          {
+            "type": "TYPED::",
             "named": false
           }
         ]
@@ -799,6 +871,10 @@
     "named": false
   },
   {
+    "type": "ALIAS:",
+    "named": false
+  },
+  {
     "type": "ALIEN:",
     "named": false
   },
@@ -835,7 +911,23 @@
     "named": false
   },
   {
+    "type": "DEFER:",
+    "named": false
+  },
+  {
     "type": "ERROR:",
+    "named": false
+  },
+  {
+    "type": "EXCLUDE:",
+    "named": false
+  },
+  {
+    "type": "FORGET:",
+    "named": false
+  },
+  {
+    "type": "FROM:",
     "named": false
   },
   {
@@ -875,7 +967,15 @@
     "named": false
   },
   {
+    "type": "IN:",
+    "named": false
+  },
+  {
     "type": "INSTANCE:",
+    "named": false
+  },
+  {
+    "type": "INTERSECTION:",
     "named": false
   },
   {
@@ -884,6 +984,14 @@
   },
   {
     "type": "M::",
+    "named": false
+  },
+  {
+    "type": "MACRO:",
+    "named": false
+  },
+  {
+    "type": "MACRO::",
     "named": false
   },
   {
@@ -899,11 +1007,23 @@
     "named": false
   },
   {
+    "type": "MIXIN:",
+    "named": false
+  },
+  {
+    "type": "POSTPONE:",
+    "named": false
+  },
+  {
     "type": "PREDICATE:",
     "named": false
   },
   {
     "type": "QUALIFIED-WITH:",
+    "named": false
+  },
+  {
+    "type": "QUALIFIED:",
     "named": false
   },
   {
@@ -943,7 +1063,31 @@
     "named": false
   },
   {
+    "type": "TYPED:",
+    "named": false
+  },
+  {
+    "type": "TYPED::",
+    "named": false
+  },
+  {
+    "type": "TYPEDEF:",
+    "named": false
+  },
+  {
     "type": "T{",
+    "named": false
+  },
+  {
+    "type": "UNION:",
+    "named": false
+  },
+  {
+    "type": "UNUSE:",
+    "named": false
+  },
+  {
+    "type": "USE:",
     "named": false
   },
   {

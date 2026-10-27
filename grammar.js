@@ -22,9 +22,9 @@ module.exports = grammar({
     ),
 
     word_defn: $ => choice(
-        seq(field('define_label_word',/::?/),field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
+        seq(field('define_label_word',choice(':', '::')),field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
         seq(field('define_label_word',/MACRO::?/),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
-        seq(field('define_label_word',/MEMO::?/),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
+        seq(field('define_label_word',choice('MEMO:', 'MEMO::')),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
         seq(field('define_label_word',/TYPED::?/),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
         seq(field('define_label_word','GENERIC:'),field('id',$.sname),$.stack_effect),
         seq(field('define_label_word','GENERIC#:'),field('id',$.sname),/\d+/,$.stack_effect),
@@ -67,8 +67,8 @@ module.exports = grammar({
     ),
 
     tuple_or_class_defn: $ => choice(
-        seq(field('define_label_ext',/TUPLE:|ERROR:/),field('id',$.sname),optional('<'),repeat($.sname),$.block_end),
-        seq(field('define_label_ext',/TUPLE:|ERROR:|BUILTIN:/),field('id',$.namel),$.block_end),
+        seq(field('define_label_ext',choice('TUPLE:','ERROR:')),field('id',$.sname),optional('<'),repeat($.sname),$.block_end),
+        seq(field('define_label_ext','BUILTIN:'),field('id',$.namel),$.block_end),
         seq(field('define_label_ext',/MIXIN:|UNION:|INTERSECTION:/),field('id',$.sname)),
         seq(field('define_label_ext','PREDICATE:'),field('id',$.sname),'<',$.sname),
         seq(field('define_label_ext','C:'),field('id',$.sname),$.sname),

@@ -592,7 +592,15 @@
         "required": true,
         "types": [
           {
+            "type": "BUILTIN:",
+            "named": false
+          },
+          {
             "type": "C:",
+            "named": false
+          },
+          {
+            "type": "ERROR:",
             "named": false
           },
           {
@@ -613,6 +621,10 @@
           },
           {
             "type": "SLOT:",
+            "named": false
+          },
+          {
+            "type": "TUPLE:",
             "named": false
           }
         ]
@@ -656,6 +668,14 @@
         "required": true,
         "types": [
           {
+            "type": ":",
+            "named": false
+          },
+          {
+            "type": "::",
+            "named": false
+          },
+          {
             "type": "GENERIC#:",
             "named": false
           },
@@ -665,6 +685,14 @@
           },
           {
             "type": "HOOK:",
+            "named": false
+          },
+          {
+            "type": "MEMO:",
+            "named": false
+          },
+          {
+            "type": "MEMO::",
             "named": false
           }
         ]
@@ -747,6 +775,14 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "::",
+    "named": false
+  },
+  {
     "type": ":>",
     "named": false
   },
@@ -764,6 +800,10 @@
   },
   {
     "type": "ALIEN:",
+    "named": false
+  },
+  {
+    "type": "BUILTIN:",
     "named": false
   },
   {
@@ -792,6 +832,10 @@
   },
   {
     "type": "C{",
+    "named": false
+  },
+  {
+    "type": "ERROR:",
     "named": false
   },
   {
@@ -847,6 +891,14 @@
     "named": false
   },
   {
+    "type": "MEMO:",
+    "named": false
+  },
+  {
+    "type": "MEMO::",
+    "named": false
+  },
+  {
     "type": "PREDICATE:",
     "named": false
   },
@@ -884,6 +936,10 @@
   },
   {
     "type": "SYNTAX:",
+    "named": false
+  },
+  {
+    "type": "TUPLE:",
     "named": false
   },
   {

@@ -81,8 +81,17 @@
               "type": "FIELD",
               "name": "define_label_word",
               "content": {
-                "type": "PATTERN",
-                "value": "::?"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ":"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "::"
+                  }
+                ]
               }
             },
             {
@@ -175,8 +184,17 @@
               "type": "FIELD",
               "name": "define_label_word",
               "content": {
-                "type": "PATTERN",
-                "value": "MEMO::?"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "MEMO:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "MEMO::"
+                  }
+                ]
               }
             },
             {
@@ -662,8 +680,17 @@
               "type": "FIELD",
               "name": "define_label_ext",
               "content": {
-                "type": "PATTERN",
-                "value": "TUPLE:|ERROR:"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "TUPLE:"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "ERROR:"
+                  }
+                ]
               }
             },
             {
@@ -706,8 +733,8 @@
               "type": "FIELD",
               "name": "define_label_ext",
               "content": {
-                "type": "PATTERN",
-                "value": "TUPLE:|ERROR:|BUILTIN:"
+                "type": "STRING",
+                "value": "BUILTIN:"
               }
             },
             {

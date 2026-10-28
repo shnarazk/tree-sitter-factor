@@ -22,7 +22,7 @@ module.exports = grammar({
     ),
 
     word_defn: $ => choice(
-        seq(field('define_label_word',choice(':', '::')),field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.attribute)),
+        seq(field('define_label_word',choice(':', '::')),field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.attributes)),
         seq(field('define_label_word',choice('MACRO:', 'MACRO::')),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
         seq(field('define_label_word',choice('MEMO:', 'MEMO::')),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
         seq(field('define_label_word',choice('TYPED:','TYPED::')),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
@@ -38,7 +38,7 @@ module.exports = grammar({
         optional($.stack_effect),
         optional($._exprs),
         $.block_end,
-        optional($.attribute),
+        optional($.attributes),
     ),
 
     stack_effect: $ => seq(
@@ -148,12 +148,7 @@ module.exports = grammar({
         $.number,
     ),
 
-    string: $ => // choice(
-        // /"""\s(?:.|\n)*?\s"""/,
-        // /"(?:\\\\|\\"|[^"])*"/,
-        /"(\\\\|\\"|[^"])*"/,
-        // /(\S+")(\s+)((?:\\\\|\\"|[^"])*")/,
-    // ),
+    string: $ => /"(\\\\|\\"|[^"])*"/,
 
     character: $ => seq(
         token('CHAR:'),
@@ -168,19 +163,28 @@ module.exports = grammar({
     // ),
 
     number: $ => choice(
-        /[+-]?(?:[\d,]*\d)?\.(?:\d([\d,]*\d)?)?(?:[eE][+-]?\d+)?/,
-        /[+-]?\d(?:[\d,]*\d)?(?:[eE][+-]?\d+)?/,
-        /0x[a-fA-F\d](?:[a-fA-F\d,]*[a-fA-F\d])?(?:p\d([\d,]*\d)?)?/,
-        /NAN:\s+[a-fA-F\d](?:[a-fA-F\d,]*[a-fA-F\d])?(?:p\d([\d,]*\d)?)?/,
+        /[+-]?([\d,]*\d)?\.(\d([\d,]*\d)?)?([eE][+-]?\d+)?/,
+        /[+-]?\d([\d,]*\d)?([eE][+-]?\d+)?/,
+        /0x[a-fA-F\d]([a-fA-F\d,]*[a-fA-F\d])?(p\d([\d,]*\d)?)?/,
+        /NAN:\s+[a-fA-F\d]([a-fA-F\d,]*[a-fA-F\d])?(p\d([\d,]*\d)?)?/,
         /0b[01]+/,
         /0o[0-7]+/,
-        /(?:\d([\d,]*\d)?)?\+\d(?:[\d,]*\d)?\/\d(?:[\d,]*\d)?/,
-        /(?:\-\d([\d,]*\d)?)?\-\d(?:[\d,]*\d)?\/\d(?:[\d,]*\d)?/,
+        /(\d([\d,]*\d)?)?\+\d([\d,]*\d)?\/\d([\d,]*\d)?/,
+        /(\-\d([\d,]*\d)?)?\-\d([\d,]*\d)?\/\d([\d,]*\d)?/,
     ),
 
     block_end: $ => ';',
 
-    attribute: $ => /(?:deprecated|final|foldable|flushable|inline|recursive)/,
+    attributes: $ => repeat1($.attribute),
+
+    attribute: $ => choice(
+      token('deprecated'),
+      token('final'),
+      token('foldable'),
+      token('flushable'),
+      token('inline'),
+      token('recursive'),
+    ),
 
     sname: $ => /[^";\s]\S*/,
 
@@ -198,7 +202,7 @@ module.exports = grammar({
         /!\n/,
         /![ \t][^\n]*\n/,
         /\/\* ([^*]|\*[^/])*\*+\//     // Is this good one?
-        // /\/\*\s+(?:.|\n)*?\s\*\//
+        // /\/\*\s+(.|\n)*?\s\*\//
     )
   }
 });

@@ -127,7 +127,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "attribute"
+                  "name": "attributes"
                 },
                 {
                   "type": "BLANK"
@@ -440,7 +440,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "attribute"
+              "name": "attributes"
             },
             {
               "type": "BLANK"
@@ -1799,19 +1799,19 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "[+-]?(?:[\\d,]*\\d)?\\.(?:\\d([\\d,]*\\d)?)?(?:[eE][+-]?\\d+)?"
+          "value": "[+-]?([\\d,]*\\d)?\\.(\\d([\\d,]*\\d)?)?([eE][+-]?\\d+)?"
         },
         {
           "type": "PATTERN",
-          "value": "[+-]?\\d(?:[\\d,]*\\d)?(?:[eE][+-]?\\d+)?"
+          "value": "[+-]?\\d([\\d,]*\\d)?([eE][+-]?\\d+)?"
         },
         {
           "type": "PATTERN",
-          "value": "0x[a-fA-F\\d](?:[a-fA-F\\d,]*[a-fA-F\\d])?(?:p\\d([\\d,]*\\d)?)?"
+          "value": "0x[a-fA-F\\d]([a-fA-F\\d,]*[a-fA-F\\d])?(p\\d([\\d,]*\\d)?)?"
         },
         {
           "type": "PATTERN",
-          "value": "NAN:\\s+[a-fA-F\\d](?:[a-fA-F\\d,]*[a-fA-F\\d])?(?:p\\d([\\d,]*\\d)?)?"
+          "value": "NAN:\\s+[a-fA-F\\d]([a-fA-F\\d,]*[a-fA-F\\d])?(p\\d([\\d,]*\\d)?)?"
         },
         {
           "type": "PATTERN",
@@ -1823,11 +1823,11 @@
         },
         {
           "type": "PATTERN",
-          "value": "(?:\\d([\\d,]*\\d)?)?\\+\\d(?:[\\d,]*\\d)?\\/\\d(?:[\\d,]*\\d)?"
+          "value": "(\\d([\\d,]*\\d)?)?\\+\\d([\\d,]*\\d)?\\/\\d([\\d,]*\\d)?"
         },
         {
           "type": "PATTERN",
-          "value": "(?:\\-\\d([\\d,]*\\d)?)?\\-\\d(?:[\\d,]*\\d)?\\/\\d(?:[\\d,]*\\d)?"
+          "value": "(\\-\\d([\\d,]*\\d)?)?\\-\\d([\\d,]*\\d)?\\/\\d([\\d,]*\\d)?"
         }
       ]
     },
@@ -1835,9 +1835,59 @@
       "type": "STRING",
       "value": ";"
     },
+    "attributes": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "attribute"
+      }
+    },
     "attribute": {
-      "type": "PATTERN",
-      "value": "(?:deprecated|final|foldable|flushable|inline|recursive)"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "deprecated"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "final"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "foldable"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "flushable"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "inline"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "recursive"
+          }
+        }
+      ]
     },
     "sname": {
       "type": "PATTERN",

@@ -412,3 +412,19 @@ Fried quotations
     (expr (sname))
     (expr (data (number)))
     (expr (sname)))))
+
+=============
+Comment
+=============
+
+[ 1 /* a */ 2 /* */ + ]
+---
+
+(source_file
+  (expr
+    (quotation
+    (expr (data (number)))
+    (comment)
+    (expr (data (number)))
+    (comment)
+    (expr (sname)))))

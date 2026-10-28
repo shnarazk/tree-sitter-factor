@@ -278,6 +278,10 @@
       "required": true,
       "types": [
         {
+          "type": "attribute",
+          "named": true
+        },
+        {
           "type": "block_end",
           "named": true
         },
@@ -785,15 +789,15 @@
       "required": true,
       "types": [
         {
+          "type": "attribute",
+          "named": true
+        },
+        {
           "type": "block_end",
           "named": true
         },
         {
           "type": "expr",
-          "named": true
-        },
-        {
-          "type": "keyword",
           "named": true
         },
         {
@@ -1119,6 +1123,10 @@
     "named": false
   },
   {
+    "type": "attribute",
+    "named": true
+  },
+  {
     "type": "bool",
     "named": true
   },
@@ -1137,10 +1145,6 @@
   {
     "type": "intersection{",
     "named": false
-  },
-  {
-    "type": "keyword",
-    "named": true
   },
   {
     "type": "maybe{",

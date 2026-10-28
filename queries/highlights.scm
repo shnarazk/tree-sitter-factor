@@ -1,7 +1,7 @@
 (bool) @boolean
 (comment) @comment
 (character) @variant
-(keyword) @keyword
+(attribute) @attribute
 (number) @number
 (string) @string
 

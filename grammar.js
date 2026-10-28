@@ -22,7 +22,7 @@ module.exports = grammar({
     ),
 
     word_defn: $ => choice(
-        seq(field('define_label_word',choice(':', '::')),field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.keyword)),
+        seq(field('define_label_word',choice(':', '::')),field('id', $.sname),$.stack_effect,optional($._exprs),$.block_end, optional($.attribute)),
         seq(field('define_label_word',choice('MACRO:', 'MACRO::')),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
         seq(field('define_label_word',choice('MEMO:', 'MEMO::')),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
         seq(field('define_label_word',choice('TYPED:','TYPED::')),field('id',$.sname),$.stack_effect,optional($._exprs),$.block_end),
@@ -37,7 +37,8 @@ module.exports = grammar({
         field('id',$.sname),
         optional($.stack_effect),
         optional($._exprs),
-        $.block_end
+        $.block_end,
+        optional($.attribute),
     ),
 
     stack_effect: $ => seq(
@@ -179,7 +180,7 @@ module.exports = grammar({
 
     block_end: $ => ';',
 
-    keyword: $ => /(?:deprecated|final|foldable|flushable|inline|recursive)/,
+    attribute: $ => /(?:deprecated|final|foldable|flushable|inline|recursive)/,
 
     sname: $ => /[^";\s]\S*/,
 

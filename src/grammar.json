@@ -127,7 +127,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "keyword"
+                  "name": "attribute"
                 },
                 {
                   "type": "BLANK"
@@ -434,6 +434,18 @@
         {
           "type": "SYMBOL",
           "name": "block_end"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -1823,7 +1835,7 @@
       "type": "STRING",
       "value": ";"
     },
-    "keyword": {
+    "attribute": {
       "type": "PATTERN",
       "value": "(?:deprecated|final|foldable|flushable|inline|recursive)"
     },

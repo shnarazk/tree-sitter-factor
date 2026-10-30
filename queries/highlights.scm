@@ -4,6 +4,7 @@
 (attribute) @attribute
 (number) @number
 (string) @string
+(regex) @string.regex
 
 (word_defn
    id:(sname) @function)

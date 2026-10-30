@@ -104,6 +104,10 @@
           "named": true
         },
         {
+          "type": "regex",
+          "named": true
+        },
+        {
           "type": "string",
           "named": true
         }
@@ -1205,6 +1209,10 @@
   {
     "type": "recursive",
     "named": false
+  },
+  {
+    "type": "regex",
+    "named": true
   },
   {
     "type": "shebang",

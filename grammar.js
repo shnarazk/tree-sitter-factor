@@ -143,12 +143,14 @@ module.exports = grammar({
 
     data: $ => choice(
         $.string,
+        $.regex,
         $.character,
         $.bool,
         $.number,
     ),
 
     string: $ => /"(\\\\|\\"|[^"])*"/,
+    regex: $ => /R\/ ([^/]|\\\/)*\/([idmsr]+)?(-[idmsr]+)?/,
 
     character: $ => seq(
         token('CHAR:'),

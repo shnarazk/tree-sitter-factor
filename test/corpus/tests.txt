@@ -428,3 +428,15 @@ Comment
     (expr (data (number)))
     (comment)
     (expr (sname)))))
+
+=============
+Regular Expression
+=============
+
+R/ [A-Z]+:\d+/
+R/ \?\S+!/m-i
+---
+
+(source_file
+  (expr (data (regex)))
+  (expr (data (regex))))

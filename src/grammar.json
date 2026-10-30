@@ -1758,6 +1758,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "regex"
+        },
+        {
+          "type": "SYMBOL",
           "name": "character"
         },
         {
@@ -1773,6 +1777,10 @@
     "string": {
       "type": "PATTERN",
       "value": "\"(\\\\\\\\|\\\\\"|[^\"])*\""
+    },
+    "regex": {
+      "type": "PATTERN",
+      "value": "R\\/ ([^/]|\\\\\\/)*\\/([idmsr]+)?(-[idmsr]+)?"
     },
     "character": {
       "type": "SEQ",

@@ -1346,6 +1346,50 @@
         }
       ]
     },
+    "_exprs_but_qdel": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "expr_but_qdel"
+      }
+    },
+    "expr_but_qdel": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "sname_but_qdel"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "data"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block_c"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block_p"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quotation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quotation_f"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quotation_l"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "quotation_let"
+        }
+      ]
+    },
     "quotation": {
       "type": "SEQ",
       "members": [
@@ -1495,7 +1539,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "expr"
+                "name": "_exprs_but_qdel"
               },
               {
                 "type": "FIELD",
@@ -1520,7 +1564,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_exprs"
+              "name": "_exprs_but_qdel"
             },
             {
               "type": "BLANK"
@@ -1900,6 +1944,10 @@
     "sname": {
       "type": "PATTERN",
       "value": "[^\";\\s]\\S*"
+    },
+    "sname_but_qdel": {
+      "type": "PATTERN",
+      "value": "([^\";:\\s]\\S*|:[^>]+)"
     },
     "parameter": {
       "type": "PATTERN",

@@ -383,7 +383,7 @@ Character 2
     (block_end)))
 
 =============
-Lexical variables
+Lexical variables 1
 =============
 
 [| a b | a b * ]
@@ -398,6 +398,25 @@ Lexical variables
     (expr (sname))
     (expr (sname))
     (expr (sname)))))
+
+=============
+Lexical variables 2
+=============
+
+[let a b + :> ab ab 2 * ]
+---
+
+(source_file
+  (expr
+    (quotation_let
+      (expr_but_qdel (sname_but_qdel))
+      (expr_but_qdel (sname_but_qdel))
+      (expr_but_qdel (sname_but_qdel))
+      (parameter)
+      (expr_but_qdel (sname_but_qdel))
+      (expr_but_qdel (data (number)))
+      (expr_but_qdel (sname_but_qdel))
+      )))
 
 =============
 Fried quotations

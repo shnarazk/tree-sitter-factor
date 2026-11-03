@@ -36,6 +36,9 @@
 (quotation_l
   (effect) @variable.parameter)
 
+(quotation_let
+  (parameter) @variable.parameter)
+
 [ "[" "'[" "[|" "[let"
   (block_c_begin) (block_p_begin)
   ")"  "]" "}"

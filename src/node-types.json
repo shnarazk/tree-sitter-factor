@@ -177,6 +177,49 @@
     }
   },
   {
+    "type": "expr_but_qdel",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block_c",
+          "named": true
+        },
+        {
+          "type": "block_p",
+          "named": true
+        },
+        {
+          "type": "data",
+          "named": true
+        },
+        {
+          "type": "quotation",
+          "named": true
+        },
+        {
+          "type": "quotation_f",
+          "named": true
+        },
+        {
+          "type": "quotation_l",
+          "named": true
+        },
+        {
+          "type": "quotation_let",
+          "named": true
+        },
+        {
+          "type": "sname_but_qdel",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "import_defn",
     "named": true,
     "fields": {
@@ -546,7 +589,7 @@
       "required": false,
       "types": [
         {
-          "type": "expr",
+          "type": "expr_but_qdel",
           "named": true
         },
         {
@@ -1220,6 +1263,10 @@
   },
   {
     "type": "sname",
+    "named": true
+  },
+  {
+    "type": "sname_but_qdel",
     "named": true
   },
   {

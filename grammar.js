@@ -107,10 +107,22 @@ module.exports = grammar({
       $.quotation_let,
     ),
 
+    _exprs_but_qdel: $ => repeat1($.expr_but_qdel),
+    expr_but_qdel: $ => choice(
+      $.sname_but_qdel,
+      $.data,
+      $.block_c,
+      $.block_p,
+      $.quotation,
+      $.quotation_f,
+      $.quotation_l,
+      $.quotation_let,
+    ),
+
     quotation: $ => seq(field('open_bracket',token('[')), optional($._exprs), token(']')),
     quotation_f: $ => seq(field('open_bracket',token('\'[')), optional($._exprs), token(']')),
     quotation_l: $ => seq(field('open_bracket',token('[|')), optional($.effect), field('quotation_delimiter',token('|')), optional($._exprs), token(']')),
-    quotation_let: $ => seq(field('open_bracket',token('[let')), repeat(seq($.expr, field('quotation_delimiter',token(':>')), $.parameter)), optional($._exprs), token(']')),
+    quotation_let: $ => seq(field('open_bracket',token('[let')), repeat(seq($._exprs_but_qdel, field('quotation_delimiter',token(':>')), $.parameter)), optional($._exprs_but_qdel), token(']')),
     block_c: $ => seq($.block_c_begin, optional($._exprs), token('}')),
     block_p: $ => seq($.block_p_begin, optional($._exprs), token(')')),
 
@@ -189,6 +201,7 @@ module.exports = grammar({
     ),
 
     sname: $ => /[^";\s]\S*/,
+    sname_but_qdel: $ => /([^";:\s]\S*|:[^>]+)/,
 
     parameter: $ => /[^"(;:\s]+/,
 
